@@ -1,0 +1,1086 @@
+/* Auteur du developpement sur-mesure pour KLR Intérieur / Claire Augoyat : Herve Augoyat - https://www.ah-book.com 
+Copie ou modification interdite sans accord ecrit de l'auteur */
+
+#load {display: none}
+.H #load {display:block; width:50px; height:auto; /*height:12.5px*/ position:fixed; z-index:1001; top:50%; margin-top:-6px; left:50%; margin-left:-25px;}
+
+html {font-size: 100%; height:100%; width:100%; -webkit-font-smoothing: antialiased;text-rendering: optimizeLegibility;}
+
+
+@font-face {font-family:'QS';font-style: normal;font-weight: 300;
+  src: url('../Fontes/QS-300.eot');
+  src: local(''),
+       url('../Fontes/QS-300.eot?#iefix') format('embedded-opentype'), 
+       url('../Fontes/QS-300.woff2') format('woff2'), 
+       url('../Fontes/QS-300.woff') format('woff'), 
+       url('../Fontes/QS-300.ttf') format('truetype'), 
+       url('../Fontes/QS-300.svg#Quicksand') format('svg'); 
+}
+@font-face {font-family:'QS';font-style: normal;font-weight: 400;
+  src: url('../Fontes/QS-400.eot'); 
+  src: local(''),
+       url('../Fontes/QS-400.eot?#iefix') format('embedded-opentype'), 
+       url('../Fontes/QS-400.woff2') format('woff2'), 
+       url('../Fontes/QS-400.woff') format('woff'), 
+       url('../Fontes/QS-400.ttf') format('truetype'), 
+       url('../Fontes/QS-400.svg#Quicksand') format('svg'); }
+
+@font-face {font-family:'QS';font-style: normal;font-weight: 500;
+  src: url('../Fontes/QS-500.eot');
+  src: local(''),
+       url('../Fontes/QS-500.eot?#iefix') format('embedded-opentype'), 
+	   url('../Fontes/QS-500.woff2') format('woff2'),
+       url('../Fontes/QS-500.woff') format('woff'),
+       url('../Fontes/QS-500.ttf') format('truetype'), 
+       url('../Fontes/QS-500.svg#Quicksand') format('svg'); }
+
+@font-face {font-family:'QS';font-style: normal;font-weight: 600;
+  src: url('../Fontes/QS-600.eot');
+  src: local(''),
+       url('../Fontes/QS-600.eot?#iefix') format('embedded-opentype'), 
+	   url('../Fontes/QS-600.woff2') format('woff2'),
+       url('../Fontes/QS-600.woff') format('woff'),
+       url('../Fontes/QS-600.ttf') format('truetype'), 
+       url('../Fontes/QS-600.svg#Quicksand') format('svg'); }
+
+@font-face {font-family:'QS';font-style: normal;font-weight: 600;
+  src: url('../Fontes/QS-700.eot');
+  src: local(''),
+       url('../Fontes/QS-700.eot?#iefix') format('embedded-opentype'), 
+	   url('../Fontes/QS-700.woff2') format('woff2'),
+       url('../Fontes/QS-700.woff') format('woff'),
+       url('../Fontes/QS-700.ttf') format('truetype'), 
+       url('../Fontes/QS-700.svg#Quicksand') format('svg'); }
+
+
+@font-face {font-family:'BO2';font-style: normal;font-weight: 600;
+  src: url('../Fontes/bodoni-moda-v28-latin-400.eot');
+  src: local(''),
+       url('../Fontes/bodoni-moda-v28-latin-400.eot?#iefix') format('embedded-opentype'), 
+	   url('../Fontes/bodoni-moda-v28-latin-400.woff2') format('woff2'),
+       url('../Fontes/bodoni-moda-v28-latin-400.woff') format('woff'),
+       url('../Fontes/bodoni-moda-v28-latin-400.ttf') format('truetype'), 
+       url('../Fontes/bodoni-moda-v28-latin-400.svg#BodoniModa') format('svg'); }
+
+
+
+
+
+/*
+@font-face {font-family:'BO';font-style: normal;font-weight: 400;
+  src: url('../Fontes/bodoni-moda-sc-v3-latin-regular.eot');
+  src: local(''),
+       url('../Fontes/bodoni-moda-sc-v3-latin-regular.eot?#iefix') format('embedded-opentype'), 
+	   url('../Fontes/bodoni-moda-sc-v3-latin-regular.woff2') format('woff2'),
+       url('../Fontes/bodoni-moda-sc-v3-latin-regular.woff') format('woff'),
+       url('../Fontes/bodoni-moda-sc-v3-latin-regular.ttf') format('truetype'), 
+       url('../Fontes/bodoni-moda-sc-v3-latin-regular.svg#BodoniModaSC') format('svg'); }*/
+
+body {font-size: 1em; color:#0e2a2f; font-family: 'QS', sans-serif; margin:0; font-weight:400; height:100%; width:100%; position:relative; 
+		background-color:#fff;
+-webkit-user-select: none; -moz-user-select: none;  -khtml-user-select: none; -ms-user-select: none; font-variant-ligatures: no-common-ligatures;}
+
+* { outline: none;}
+.ret {clear:both; width:0; height:0; line-height:0; margin:0; padding:0; float:none}
+.retMob { display: none}
+
+img {display:block}
+a img {border:none}
+a {outline:none; border:none; text-decoration:none}
+ul, li {margin:0; padding:0; list-style:none}
+h1, h2, h3, h4 {padding:0; margin:0; font-size:1em; font-weight:normal; line-height:1.1em}
+sup {font-size: 0.55em; line-height: 1em}
+/*::-moz-selection, ::selection { background:#08aeac}*/
+#testeur {position:fixed; z-index:9999; bottom:0; right:0; padding:10px; font-size:0.75em; letter-spacing:0.1em; display:inline-block; font-family: sans-serif; color:#FFF; opacity:0.5; background-color: #000000; display:none}
+
+#MOB {display:none}
+#MOB2 {display:none} 
+
+
+.calExt{} .cal {position: absolute; top:0; left:0; width: 100%}
+.H .cal {width: auto; height: auto}
+
+#remonte {width:46px; height:46px; background-color:#fff; position:fixed; bottom:0px; left:0; z-index:150; 
+		visibility:hidden; overflow:hidden; cursor:pointer}
+		#remonte img {width:22px; position:absolute; top:50%; left:50%; margin-left:-11px; margin-top:-11px; display:block;transform-origin: 50% 50%;}
+.H #remonte {visibility: hidden}
+
+
+#accueil {width: 100%; height: 100%; min-height: 400px; position: relative; z-index: 10; overflow: hidden}
+	#logoacc {width: 250px; height: auto; display: block; position: absolute; top: 50%; left: 50%; margin-top:-89px; margin-left: -125px; z-index: 20}
+		#logoacc img {width: 100%; display: block}
+	
+	#aG {position: relative; z-index: 1; width: 50%; float: left; height: 100%; transform-origin: 0 0}
+		#a1 {width: 100%; height: 60%; background-color:#03424c; position: relative; overflow: hidden; z-index: 1; transform-origin: 0 0;}
+		#a2 {width: 100%; height: 40%; background-color:#08aeac; position: relative; overflow: hidden; z-index: 1; transform-origin: 0 0;}
+	#aD {position: relative; z-index: 1; width: 50%; float: left; height: 100%}
+		#a3 {width: 100%; height: 21%; background-color:#08aeac; position: relative; overflow: hidden; z-index: 1; transform-origin: 0 0;}
+		#a4 {width: 100%; height: 79%; background-color:#03424c; position: relative; overflow: hidden; z-index: 1; transform-origin: 0 0;}
+	#aG img, #aD img { display: block; position: absolute; top: 0; left: 0; transform-origin: 50% 50%; z-index: 9}
+	
+	#a3 strong {color:#fff; position: relative; font-size: 1.5em; font-weight: 300; z-index: 10; letter-spacing:0.1em; 
+		line-height: 1em; text-align: right; display: block; right:28px; position: absolute; bottom: 0;  padding-bottom: 0.7em; padding-top: 1.5em}
+	
+	#a3 strong span { position: relative; display: block; overflow: hidden; line-height: 1em; padding-bottom: 0.01em}
+		#a3 strong b {font-weight:300; display: inline-block; line-height: 1.4em;}
+		.H #a3 strong b {visibility:hidden}
+
+.H #logoacc, .H #aG, .H #aD {visibility:hidden}
+
+
+
+#btmenu {display:block; position: fixed; top:28px; right:28px; width:63px; z-index:950; cursor: pointer; background-color: rgba(3, 50, 58, 0.4);}
+	#btmenu #lignes {width: 63px}
+	#b1, #b2, #b3 {width:31px; height: 3px; background-color: #fff; position: relative; margin-left:16px; display: block; transform-origin:0 0;}
+	#b1 {margin-top:19px; z-index:950} #b2 {margin-top:8px; z-index:951} #b3 {margin-top: 8px; margin-bottom: 19px; z-index:950}
+#btmenu #fermer {display:block; visibility: hidden; width:63px; height:63px;background-color:#FFFFFF; position: absolute; top: 0; left: 0; z-index: 960}
+	#btmenu #fermer b {width:27px;height:2px;background-color:#2ec2bf;transform-origin:50% 50%; position: absolute; top:31px; left:18px;display: block}
+
+.H #btmenu, .H #btmenu i {visibility: hidden}
+		
+
+.navigation {width:100%; height:auto; position:relative; left:0;}
+	.H .navigation {width:100%; height: 100%; position: fixed; left:102%; bottom: 0; z-index:900; overflow:hidden; transform-origin:0 100%}
+	/*.H .navigation {left:0%}*/
+	.navigationInt {width:100%; height:600px; position: relative; z-index:902; background-color:#03424c}
+	.H .navigationInt {height:100%;}
+
+.navigationInt ul {padding-left: 11.5%; padding-top: 10.8em}
+.navigationInt li { display: block; position: relative}
+.navigationInt li a { display:inline-block; font-size:4.8em; position: relative; line-height:0.6em;font-weight: normal; 
+	padding-bottom: 0.15em; padding-top: 0.15em; color:#FFFFFF}
+.navigationInt li a.mactifnav {color:#2ec2bf}
+	.navigationInt li i {font-size: 0.3em; line-height:0.8em; font-style: normal;font-weight: 300; position: absolute; top: 0.45em; 
+		letter-spacing: 0.09em; z-index:903; }
+	.navigationInt li span {font-size:1em; font-family: 'BO2', sans-serif; text-transform: uppercase; letter-spacing: 0.025em; position: relative; 
+		z-index:904; display: inline-block; line-height:0.8em}
+	.navigationInt .iG span {padding-left: 0.45em}
+	.navigationInt .iG i {left:0}
+	.navigationInt .iD span {padding-right: 0.45em; padding-left: 0}
+	.navigationInt .iD i {right:0}
+
+	.navigationInt #n1 {padding-left: 9.5em}
+	.navigationInt #n3 {padding-left: 23em}
+	.navigationInt #n4 {padding-left: 21em}
+	.navigationInt #n5 {padding-left: 41.6em}
+
+@media screen and (max-height:760px){.navigationInt ul{padding-top:8em; }}
+@media screen and (max-height:700px){.navigationInt ul{padding-top:5em; font-size: 0.95em }}
+@media screen and (max-height:670px){.navigationInt ul{padding-top:3em; font-size: 0.9em }}
+@media screen and (max-height:530px){.navigationInt ul{padding-left:10%; padding-top:3em;font-size:0.8em;}}
+@media screen and (max-height:480px){.navigationInt ul{padding-left:10%; padding-top:2em;font-size:0.7em;}}
+@media screen and (max-height:430px){.navigationInt ul{padding-left:10%; padding-top:1.5em;font-size:0.6em;}}
+
+
+
+#page {width: 100%; background-color:#fff; position: relative; z-index: 10}
+
+
+/* commun */ 
+.fondgris { background-color:#fafafa}
+
+.lienTraitA { color:#0e2a2f; display: inline-block; padding-bottom:0em; position: relative}
+	.lienTraitA i {position:absolute; bottom:-0.1em; left: 0; width: 100%; height: 2px; background-color:#08aeac; transform-origin: 0}
+
+.coulA {color:#03424c}
+.coulB {color:#000 }
+.coulC {color:#08aeac }
+
+.paddH23 {padding-top:23em} .paddH18 {padding-top:18em} .paddH15 {padding-top:15em} .paddH13 {padding-top:13em}
+.paddH12{padding-top:12em} .paddH11 {padding-top:11em} .paddH10 {padding-top:10em} .paddH9 {padding-top:9em} .paddH8 {padding-top:8em}
+.paddH7 {padding-top:7em} .paddH65 {padding-top:6.5em} .paddH6 {padding-top:6em} .paddH4 {padding-top:4em}.paddH2 {padding-top:2em}
+
+.paddB17 {padding-bottom:17em} .paddB15 {padding-bottom:15em}.paddB12 {padding-bottom:12em}.paddB11 {padding-bottom:11em}.paddB10 {padding-bottom:10em}.paddB7 {padding-bottom:7em}
+.paddB4 {padding-bottom:4em} .paddB3 {padding-bottom:3em}
+
+.margH18 {margin-top: 18em}
+.margH17 {margin-top:17em} .margH15 {margin-top:15em} .margH13 {margin-top:13em} .margB13 {margin-bottom:13em}
+.margH11 {margin-top:11em}
+.margH9 {margin-top:9em} .margH7 {margin-top:7em}.margH6 {margin-top:6em}.margH4 {margin-top:4em} .margH3 {margin-top:3em}
+.margH2 {margin-top: 2em} .margB108{margin-bottom:1.8em} .margH1 {margin-top: 1em}
+
+.margH20 {margin-top: 20em}
+
+
+.Texteselect {-webkit-user-select:text; -moz-user-select:text;  -khtml-user-select:text; -ms-user-select:text}
+
+
+.H .ano0, .H .ano1 {visibility: hidden}
+.H .ans1 {visibility: hidden; transform-origin:50% 50% }
+.contextimg {overflow: hidden}
+.H .any1, .H .any2 {visibility: hidden; transform-origin: 50% 50% }
+.H .anys1 {visibility: hidden; transform-origin: 50% 50% }
+
+
+.animVID {position: relative; overflow: hidden}
+.animVID .animVIDint {position: relative; display: block; z-index: 12; transform-origin: 50% 50%; width: 100%}
+.H .animVID .animVIDint {visibility: hidden} 
+.H .animVID i {display: block; position: absolute; top: 0; left: 0;width:100%; height:100%; background-color:#2ec2bf; z-index: 13; visibility: hidden; 
+	transform-origin:0 0}
+
+.animIMG {position: relative; overflow: hidden}
+.animIMG img {position: relative; display: block; z-index: 12; transform-origin: 50% 50%; width: 100%}
+.H .animIMG img {visibility: hidden} 
+.H .animIMG i {display: block; position: absolute; top: 0; left: 0;width:100%; height:100%; background-color: #2ec2bf; z-index: 13; visibility: hidden; 
+	transform-origin:0 0}
+
+.animIMG2 {position: relative; overflow: hidden}
+.animIMG2 img {position: relative; display: block; z-index: 12; transform-origin: 50% 50%; width: 100%}
+.H .animIMG2 img {visibility: hidden}
+.H .animIMG2 i {display: block; position: absolute; top: 0; left: 0;width:100%; height:100%; background-color: #2ec2bf; z-index: 13; visibility: hidden; 
+	transform-origin:0 0}
+
+.plus {width: 4em; display: block; border: 2px solid #dcebeb; border-radius: 50%}
+.plus img {width: 100%; display: block; transform-origin: 50% 50%}
+
+
+
+#presentation {width: 100%; position: relative}
+	#presentation .fond {background-color: #03424c; position: absolute; height: 100%; width: 100%; z-index: 8; top: 0; left: 0}
+	#presentation h2 {color:#fff; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; font-size:4.3em; line-height: 1.2em; position: relative; z-index: 10; text-align: center; padding-top: 4em; padding-bottom:4em; }
+	#presentation .img84 {width: 83%; max-width: 2200px;  margin-left: auto; margin-right: auto; display: block; position: relative; z-index: 10}
+
+#presentation2 {width: 75%; max-width: 1430px; margin-left: auto; margin-right: auto; position: relative}
+	.pres2G {width: 45%; float: left; padding-top: 5em;}
+	.pres2D {width: 50%; float: right; position: relative; z-index: 20; padding-top: 5em;}
+	#presentation2 h1 {color:#03424c; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height: 1.3em; font-size: 3.1em; padding-top:1em}
+	#presentation2 p {color: #2b4a50; font-weight: 400; font-size: 1.3em; line-height: 1.7em; padding-top: 1.8em; margin: 0}
+	#presentation2 p strong {font-weight: 600}
+	#presentation2 .plus {margin-top:2.5em}
+	#presentation2 .fondjaune {position: absolute; top:0; left:20%; width:35%; height: 400px; background-color: #08aeac; z-index: 15; 
+			transform-origin: 0 0; visibility: hidden}
+
+
+#presentation3 {width: 100%; position: relative}
+	#presentation3 .fond {background-color: #03424c; position: absolute; height: 100%; width: 100%; z-index: 8; top: 0; left: 0}
+	#presentation3 h2 {color:#fff; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; font-size:4.3em; line-height: 1.2em; position: relative; 
+		z-index: 10; text-align: center; padding-top: 5em; padding-bottom: 2em; }
+	#presentation3 .img84 {width: 83%;max-width: 2200px;  margin-left: auto; margin-right: auto; display: block; position: relative; z-index: 10}
+
+.videointA {position:relative; cursor:pointer}
+		.playvideo {width:6em; height:auto; display:block; position:absolute; top:50%; left:50%; margin-top:-3em; margin-left:-3em; z-index:9001; 
+			transform-origin: 50% 50%}
+		.videointA video {width: 100%; height: auto; position:relative; z-index:9000; cursor:pointer}
+
+.videoclassique {position:relative}
+	.videoclassique video {width: 100%; height: auto; position:relative; z-index:9000}
+
+#presentation4 {width: 75%;max-width: 1430px; margin-left: auto; margin-right: auto; margin-top: 18em; margin-bottom: 18em; position: relative}
+	#presentation4 h2 {color:#03424c; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height: 1.3em; font-size: 3.1em; padding-top:1em}
+	#presentation4 p {color: #2b4a50; font-weight: 400; font-size: 1.3em; line-height: 1.7em; padding-top: 1.8em; margin: 0}
+	#presentation4 p strong {font-weight: 600}
+	#presentation4 .plus {margin-top:2.5em}
+	#presentation4 .fondjaune {position: absolute; top:0; left:20%; width:35%; height: 400px; background-color: #08aeac; z-index: 15; 
+			transform-origin: 0 0; visibility: hidden}
+	
+
+#visusflotant {background-color: #03424c; margin-top: 20em; padding-bottom: 13em}
+#visusflotantInt {width: 75%; max-width: 1430px;  margin-left: auto; margin-right: auto; position: relative; padding-top: 25em; }
+#vf1 {position: relative; z-index: 10; width: 76%}
+#vf2, #vf3, #vf4 {position: absolute; display: block}
+#vf2 {z-index: 12; width:22%; left:52%; top:21em}
+#vf3 {z-index: 11; width:22%; left:65%; top:8em}
+#vf4 {z-index: 13; width:12.5%; left:82%; top:11em}
+.H #vf2, .H #vf3, .H #vf4 {visibility: hidden}
+
+#logoint {width: 162px; display: block;position:absolute; left:0; top:3em; z-index: 50;}
+#logoint img {width: 100%; display: block}
+.H #logoint {visibility: hidden}
+
+#projets {position: relative; z-index: 10}
+#fondHprojets {background-color: #03424c; position: absolute; top: 0; left: 0;width:100%;  height:32em; z-index: 5}
+
+.projetsint {width: 83%;max-width: 2200px; margin-left: auto; margin-right: auto; position: relative}
+.projetsintAccueil {padding-top:10em} .projetsintProjets {padding-top:7em}
+	#titreprojets {display:inline-block; position: absolute; top:10em; right: 5%;z-index: 30;pointer-events:none}
+	#titreprojets2 {display:inline-block; position: absolute; top:6em; right: 8%;z-index: 30;pointer-events:none}
+		
+	#titreprojets h3 {color:#fff; font-size: 8em; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height:0.75em; display: block; pointer-events: none}
+		#titreprojets h3 i {display: inline-block; font-style: normal}
+		.H #titreprojets h3 i {visibility: hidden}
+	#titreprojets2 h3 {color:#03424c; font-size: 13em; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height:0.75em; display: block; pointer-events: none} 
+		#titreprojets2 h3 i {display: inline-block; font-style: normal}
+		.H #titreprojets2 h3 i {visibility: hidden}
+	
+
+@media screen and (max-width: 2100px) {
+	.projetsintProjets {padding-top:6.5em}
+	#titreprojets2 {top:7em; right: 8%;}
+	#titreprojets2 h3 {font-size: 10em; } 
+}
+
+.projetsintAccueil ul {position: relative; z-index: 20; padding-top:5.7em}
+.projetsintProjets ul {position: relative; z-index: 20; padding-top:5.7em}
+#projets ul .projetsA {width: 100%}
+#projets ul .projetsB {width: 60%; float: left; margin-top: 10em; margin-bottom: 13em}
+#projets ul .projetsC {width: 34%; float: right; margin-top: 0.5em; margin-bottom: 13em}
+
+#projets ul li a {display: block; width: 100%}
+#projets ul li a b {display: block; width: 100%; overflow: hidden; position: relative}
+#projets ul li a b img {display: block; width: 100%; transform-origin: 50% 50%}
+#projets ul li a span {color:#03424c; font-size: 2.4em; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height:1.2em; margin-top: 1.1em; display: block}
+#projets ul li a strong {color:#03424c; font-size: 1.15em; font-weight: 500; display: block; letter-spacing: 0.03em; padding-top: 0.3em}
+#projets ul li p {color:#03424c; font-size: 1.15em; font-weight: 300; line-height: 1.6em; width: 60%; margin: 0; padding-top: 1.3em; letter-spacing: 0.025em; margin-bottom: 2em}
+
+
+#projets ul .projetsB .ProjetsB1 {width: 100%}
+#projets ul .projetsB .ProjetsB2 {width: 100%; text-align: right}
+#projets ul li .ProjetsB2 p {width: 70%; text-align: right; float: right}
+#projets ul .projetsC p {width: 100%}
+
+
+
+
+#projet {position: relative; z-index: 10}
+.projetint {width: 83%;max-width: 2200px; margin-left: auto; margin-right: auto; position: relative; padding-top:9.8em}
+#titreprojets3 {display:inline-block; position: absolute; top:7em; right: 8%;z-index: 30;pointer-events:none}
+#titreprojets3 h3 {color:#03424c; font-size: 10em; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height:0.85em; display: block; pointer-events: none} 
+		#titreprojets3 h3 i {display: inline-block; font-style: normal}
+		.H #titreprojets3 h3 i {visibility: hidden}
+
+@media screen and (max-width: 2100px) {
+	.projetint {padding-top:7em}
+	#titreprojets3 {top:7em; right: 8%;}
+	#titreprojets3 h3 {font-size:7.3em; }
+}
+
+#contProjet{position: relative; z-index: 20; padding-top: 10.5em}
+.textA {width: 36%; margin-left: 6%; float: left; margin-top: 12em; position: relative; z-index: 150; text-align: right}
+.imgA {width: 50%; float: right; margin-bottom: 7em; position: relative; z-index: 10}
+
+.largeurreduite {width: 83%;max-width: 2200px; margin-left: auto; margin-right: auto; position: relative}
+.textB {width: 70%; margin-left: 15%; margin-top: 12em; margin-bottom: 10em; position: relative; z-index: 150}
+
+
+#projet h1 {color:#03424c; font-size: 2.2em; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height:1.2em; display: block; padding-bottom: 1em}
+#projet h2 {color:#03424c; font-size: 3.2em; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height:1.2em; display: block; padding-bottom: 1.5em}
+#projet h4 {color:#03424c; font-size: 3.8em; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height:1.2em; display: block; padding-bottom: 1.5em}
+
+#projet p {color:#03424c; font-size: 1.15em; font-weight: 400; display: block; letter-spacing: 0.03em; margin-top:0; padding-top: 0.3em; line-height: 1.9em}
+#projet .textcentre {text-align: center}
+#projet .legende {color:#03424c; font-size: 1em; letter-spacing: 0.04em; padding: 1em 0; display: block; text-align: right}
+#projet .textGauche {text-align: left}
+
+.blocC {width: 100%; position: relative}
+.fondC {width: 100%; position: absolute; top: 0; left: 0; height:100%;background-color: #03424c; z-index: 5}
+	.imgC1 {width: 91.5%; position: relative; z-index: 150}
+	.textC {width: 56%; float: left; position: relative; z-index: 150; text-align: right}
+	#projet .textC .titreTextC {padding-top: 12em; padding-bottom: 5em}
+	#projet .textC h4 {color:#fff; padding:0; }
+	#projet .textC p {color:#fff; padding-top: 4em; margin-left: 40%; }
+	.H #projet .textC p {color:#03424c}
+	
+	.imgC2 {width: 35%; float: right; margin-top: 12em; margin-bottom: 0; position: relative; z-index: 150}
+	.imgC2 img {width: 100%; display: block}
+
+.blocD {width:100%; max-width: 2200px; margin-left: auto; margin-right: auto; position: relative}
+.blocDgauche {float: left; width: 41.5%; margin-left: 8.5%}
+	.blocDgauche .imgD1 {margin-top: 8em}
+	.blocDgauche .imgD1 img {width: 100%; display: block}
+#projet .blocDgauche p {margin-left: 30%; margin-top: 3em; text-align: right; display: block}
+.blocDdroite {float: right; width: 48%; margin-left: 2%}
+.blocDdroiteimg1 {width:60%}
+.blocDdroiteimg2 {width: 100%; margin-top: 1em}
+.blocDdroite img {width: 100%; display: block}
+
+#projet .imagefull {width: 100%; display: block}
+
+
+.blocEgauche {float: left; width: 35%}
+.blocEgauche img {width: 100%; display: block}
+.blocEdroite {float: left; width: 35%; margin-left: 4%; padding-top: 11em;}
+
+.blocF {float: right; width: 70%}
+
+.blocHgauche {width: 48%; float: left; margin-bottom: 4em}
+.blocHdroite {width: 48%; float: right; margin-bottom: 4em}
+.blocHgauche img, .blocHdroite img {width: 100%; display: block}
+
+.ambiance {width: 100%; position: relative; padding-top: 10em}
+	.ambiance h5 {color:#03424c; font-size: 6em; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height:1.2em; display: block; 
+	width: 58%; text-align: right; padding: 0; margin: 0; position: relative; z-index: 40}
+#projet .ambiance p {width: 30%; max-width: 480px;  text-align: right; float: right; margin-right: 50%; margin-top: 0; padding-top: 3em}
+.va1 {width: 23%; position: absolute; top: 19em; left: 53%; z-index: 20}
+.va2 {width: 23%; position: absolute; top: 3em; left: 63%; z-index: 19}
+.va3 {width: 13%; position: absolute; top: 9em; left: 81%; z-index: 21}
+
+#suivant {padding-bottom: 7em; text-align: center; font-size: 0.8em}
+	#projsuivant {color:#03424c; font-size:1em; font-weight: 400; line-height:1.2em; display:inline-block; float: right}
+		#projsuivant span { display: inline-block; float: left; font-size: 2em; line-height: 0.9em; padding-top: 0.2em; letter-spacing: 0.02em}
+		#projsuivant i {display:block; width: 3em; height: 3em; margin-left: 1em; overflow: hidden; position: relative; float: left}
+		#projsuivant i img {width: 6em; height: 3em; position: absolute; top: 0; left: -3em}
+	#projretour {color:#03424c; font-size:1em; font-weight: 400; line-height:1.2em; display:inline-block; float:left}
+		#projretour span { display: inline-block; float: left; font-size: 2em; line-height: 0.9em; padding-top: 0.2em; letter-spacing: 0.02em}
+		#projretour i {display:block; width: 3em; height: 3em; margin-right: 1em; overflow: hidden; position: relative; float: left}
+		#projretour i img {width: 6em; height: 3em; position: absolute; top: 0; left:0em}
+
+
+
+
+#apropos {position: relative; z-index: 10}
+.aproposint {width: 83%;max-width: 2200px; margin-left: auto; margin-right: auto; position: relative; padding-top:9.8em}
+#titreapropos {display:inline-block; position: absolute; top:7em; left: 25%;z-index: 30;pointer-events:none}
+#titreapropos h3 {color:#03424c; font-size: 7.5em; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height:0.75em; display: block; pointer-events: none} 
+.H #titreapropos h3 {color:#fff}
+		#titreapropos h3 i {display: inline-block; font-style: normal}
+		.H #titreapropos h3 i {visibility: hidden}
+
+@media screen and (max-width: 2100px) {
+	.aproposint {padding-top:7em}
+	#titreapropos {top:7em; left: 25%;}
+	#titreapropos h3 {font-size: 6em; }
+}
+
+.H #fondapropos {position: absolute; top: 0; left: 15%; width: 70%; background-color: #03424c; z-index: 5; height: 800px; visibility: hidden; transform-origin: 0 0}
+.H #fondaproposMOB {display: none}
+#contapropos{position: relative; z-index: 20; padding-top: 7em;}
+
+.AproposA1 {float: left; width: 38%}
+.AproposA2 {float: left; width: 38%; margin-left:4%}
+	.AproposA2a {padding-top:5em; padding-bottom: 3em}
+	.AproposA2b {padding-top:3em; padding-bottom: 0em}
+
+#apropos h1 {color:#03424c; font-size: 1.15em; font-weight: 400; display: block; letter-spacing: 0.03em; margin-top:0;line-height: 1.9em}
+#apropos h2 {color:#03424c; font-size: 2.2em; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height:1.2em; display: block; padding-bottom: 1em}
+#apropos h4 {color:#2b4a50; font-size: 2.2em; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height:1.2em; display: block; padding-bottom: 1em}
+#apropos p {color:#03424c; font-size: 1.15em; font-weight: 400; display: block; letter-spacing: 0.03em; margin-top:0; padding-top: 0.3em; line-height: 1.9em}
+.H #apropos .AproposA2a h1 {color:#fff; font-size: 1.25em;}
+.H #apropos .AproposA2a p {color:#fff; padding-top: 0;font-size: 1.25em;}
+#apropos .AproposA2b p {padding-top: 0;font-size: 1.25em;}
+
+
+/* contact */ 
+.H #apropos .AproposA2a h1.titrecontact, .H #apropos .AproposA2a h2.titrecontact {color:#fff; font-size: 1.3em; font-weight:400; 
+			text-transform: uppercase; letter-spacing: 0.04em; position: relative; display: inline-block; padding-right: 6em; padding-bottom: 0.4em;
+			font-family: 'QS', sans-serif; }
+	.H #apropos .AproposA2a h1.titrecontact i, .H #apropos .AproposA2a h2.titrecontact i {position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; ; background-color: #2ec2bf}
+.listecontact {padding-top: 0.8em}
+.listecontact li {color:#fff; font-size: 1.25em; font-weight: 400; display: block; letter-spacing: 0.03em; margin-top:0; padding-top: 0.9em; line-height: 1.6em}
+	.listecontact li a {color:#fff}
+	.listecontact li span {color:#fff; font-size: 0.8em}
+.listecontact li span sup {font-size: 0.8em; padding-right: 0.4em}
+
+#apropos .AproposA2b h1.titrecontact, #apropos .AproposA2b h2.titrecontact {color:#2b4a50; font-size: 1.3em; font-weight:400; text-transform: uppercase; letter-spacing: 0.04em; font-family: 'QS', sans-serif; position: relative; display: inline-block; padding-right: 6em; padding-bottom: 0.4em; margin-bottom: 1em}
+#apropos .AproposA2b h2.titrecontact {padding-top: 4em}
+	#apropos .AproposA2b h1.titrecontact i, #apropos .AproposA2b h2.titrecontact i {position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; ; background-color: #2ec2bf}
+
+#apropos .AproposA2b a {color:#2b4a50; font-size:0.95em; font-weight:400; position: relative; display: inline-block; padding-bottom: 0.1em; 
+	margin-bottom: 1em; font-weight: 500; padding-top: 1em}
+#apropos .AproposA2b a:hover {color:#000}
+	#apropos .AproposA2b a i {position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; ; background-color: #2ec2bf}
+
+.blocJ { margin-top:20em}
+@media screen and (max-width: 2100px) {
+	.blocJ { margin-top:15em}
+}
+.blocJgauche {width: 30%; margin-left: 8%; float: left; text-align: right}
+.blocJdroite {width: 43%; margin-right: 15%; float: right; position: relative}
+	.blocJdroite .blocJd1 {width: 80%; display: block; position: relative; z-index: 20}
+	.blocJdroite .blocJd2 {width: 55%; display: block; position: absolute; top:80%; z-index:19; right:0}
+
+
+.blocK { margin-top:20em; position: relative}
+	.blocK h4 {width: 37%; margin-left: 15%; padding-top: 2em; text-align: right; position: relative; z-index: 20; }
+@media screen and (max-width: 2100px) {
+	.blocK { margin-top:15em}
+	.blocK h4 {width: 38%; margin-left: 10%; padding-top: 1em}
+}
+.blocK p {width: 34%; margin-left: 4%; text-align: right; position: relative; z-index: 20}
+.blocK .blocKIMG {width: 43%; position: absolute; top: 0; right:15%; z-index: 19}
+
+.blocL { text-align: center; color:#03424c;background-color: #fff; margin-top: 17em; padding-bottom:13em }
+.phrase1 {font-size: 1.7em; letter-spacing: 0.03em; font-weight: 300; line-height: 1.7em; display: inline-block}
+.phrase2 {font-size: 3.2em; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height:1.2em; display: inline-block}
+.phrase3 {font-size: 3.2em; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height:1.2em; padding-left: 7em; display: inline-block}
+
+
+#echangeons {background-color: #03424c; padding-top: 15em; padding-bottom: 8em}
+.echange {display: block; text-align: center}
+.echange a {color:#fff; line-height: 1.3em; font-size: 4.3em; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; display: inline-block}
+.echange a span {letter-spacing: 0.02em}
+.echange a b {width: 0.8em; display:inline-block; border: 2px solid #6e9a9e; border-radius: 50%; margin-top: 0.3em}
+.echange a b img {width: 100%; display: block; transform-origin: 50% 50%}
+	
+#echangeons ul {margin-top: 5em}
+.pagesG {float: left; width: 48.5%; text-align: right}
+.pagesD {float: right; width: 48.5%;}
+#echangeons li {display: block}
+#echangeons li a { display:inline-block; font-size:3em; position: relative; line-height:1em;font-weight: normal; padding-bottom: 0.15em; 
+	padding-top: 0.15em; color:#FFFFFF}
+#echangeons li a.echangeMactif {color:#2ec2bf}
+	#echangeons li i {font-size: 0.35em; line-height:1em; font-style: normal;font-weight: 300; position: absolute; top: 0.6em; 
+		letter-spacing: 0.09em; z-index:903}
+	#echangeons li span {font-size:1em; font-family: 'BO2', sans-serif; text-transform: uppercase; letter-spacing: 0.025em; position: relative; z-index:904;  line-height:1em; display: inline-block}
+.pagesG li a span {padding-left: 0.5em}
+.pagesD li a span {padding-right:0.5em}
+.pagesG li i {left:0}
+.pagesD li i {right:0}
+
+
+#bas {background-color: #fff; padding: 4em 0 2.5em 0}
+#logobas {width: 150px; display: block; /*float: left; margin-left:4%*/ margin-left: auto; margin-right: auto}
+	#logobas img {width: 100%; display: block}
+.col1 {/*float: left; margin-left:4%*/ width: 100%; text-align: center; margin-top: 2em}
+	.col1 strong {color:#03424c; font-weight: 500; font-size:1em; line-height: 1.8em; display: inline-block; position: relative; text-transform: uppercase; letter-spacing: 0.12em; padding-left: 2em; padding-right: 2em; padding-bottom: 0.4em; text-align: center}
+	.col1 strong i {position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background-color: #2ec2bf}
+	.col1 ul {margin-top: 1em}
+	.col1 ul li {display: block; margin-bottom: 0.3em}
+	.col1 ul li a, .col1 ul li span {color:#03424c; font-weight:400; font-size: 1.05em; line-height:1.5em; letter-spacing: 0.04em; display: inline-block}
+	/*.col1 ul li .light {color:#a5c3c5}*/
+.basplus {/*float: right; margin-right: 4%; text-align: right*/ text-align: center; display: block; margin-top:3em}
+.reseaux{ padding-bottom: 1em}
+.reseaux li {display:inline-block; margin-left: 1em}
+.reseaux li a, .reseaux li span {display:block; width: 2.4em; border: 2px solid #f1f7f7; border-radius: 50%;}
+.reseaux li a img, .reseaux li span img {display: block; width: 100%}
+#mentions {color:#03424c; font-weight:400; font-size:0.85em; line-height:1.5em; letter-spacing: 0.04em}
+
+#votredemande {padding-top: 8em; padding-bottom: 11em}
+#votredemande h2 {font-size: 3.4em; letter-spacing:0.12em; display: block; text-align:center; padding-bottom: 0em}
+
+#formulaire2 ::-webkit-input-placeholder {color:#03424c; }
+#formulaire2 :-moz-placeholder {color:#03424c; opacity:1; }
+#formulaire2 ::-moz-placeholder {color:#03424c;opacity:1;}
+#formulaire2 :-ms-input-placeholder {color:#03424c;}
+#formulaire2 ::-ms-input-placeholder {color:#03424c;}
+#formulaire2 ::placeholder {color:#03424c;}
+
+	#formulaire2 .titreformulaire {color:#2b4a50; font-size: 1.1em; font-weight:400; padding: 2.3em 0 0 0; display: block; letter-spacing: 0.04em}
+	#formulaire2 .titreformulaire strong {display: inline-block; font-size: 1em; letter-spacing: 0.05em; font-weight:500}
+
+	#formulaire2 {display:block; text-align:left; margin:0 auto; padding-top:2.7em; width:750px; font-size:1em; 
+		font-family: 'QS', sans-serif; font-weight:400; letter-spacing:0.04em; -webkit-user-select:text; -moz-user-select:text;  -khtml-user-select:text; -ms-user-select:text}
+		#formulaire2 .formgauche {width:47%; float:left; margin:0.6em 0 0 0; display: block}
+		#formulaire2 .formdroite {width:47%; float:left; margin:0.6em 0 0 6%; display: block}
+		#formulaire2 .fromlong {width:100%; float:none; margin:0.6em 0 0 0; padding:0; display: block}
+		#formulaire2 input.text {color:#03424c; font-size:1.15em; border:none; padding:0.4em 0 0.4em 0; font-family: 'QS', sans-serif; font-weight:400; border-bottom:1px solid #2ec2bf; background:none; border-radius:0; letter-spacing: 0.025em}
+		#formulaire2 input.text:hover {color:#000; background-color:#fafafa;border-bottom:1px solid #03424c; }
+		#formulaire2 textarea{margin:2.5em 0 0 0; height:10em; color:#03424c; border:none; padding:1em 4% 0.8em 4%; 
+			background-color: #f1f8f8; width:92%; border-radius:20px; font-size:1.15em; 
+			font-family: 'QS', sans-serif; font-weight:400; line-height: 1.6em}
+		#formulaire2 textarea:hover {color:#000; background-color: #fafafa;}
+		
+		#formulaire2 .check {display: block; position: relative; width: 100%; margin-bottom: 0.2em;-webkit-user-select: none; -moz-user-select: none;  -khtml-user-select: none; -ms-user-select: none;}
+		#formulaire2 .labcheckbox2 {display:block; font-size:1em; font-weight:400; color:#03424c; cursor: pointer; float: left; padding-left:36px;
+		padding-bottom: 0.4em; line-height: 1.4em; padding-top: 0.2em}
+			.labcheckbox2 a {color:#4f7e84; text-decoration: underline} .labcheckbox2 a:hover { text-decoration: none}
+		#formulaire2 input.box2 {accent-color:#000; width:20px; height:20px; display:inline-block; position: absolute; top:2px; left: 0; cursor: pointer}
+		
+		#formulaire2 .minimargeH {margin-top: 0.9em}
+		#formulaire2 .labcheckbox {display:block; font-size: 1.05em; font-weight: 400; color:#000000; cursor: pointer;float: left; padding-left:35px;
+		padding-bottom: 0.4em; line-height: 1.4em; padding-top: 0.3em}
+		#formulaire2 input.box {accent-color:#000; width:22px; height:22px; display:inline-block; position: absolute; top:2px; left: 0; cursor: pointer}
+		
+		#formulaire2 input.box:checked, #formulaire2 input.box2:checked {accent-color:#000}
+		#formulaire2 .labcheckbox:hover, #formulaire2 .labcheckbox2:hover {color:#03424c;}
+		
+		#envoyer {color:#fff; text-transform:uppercase; background-color:#2b4a50; border-radius:8px;display:block; border:none; 
+					padding:0.9em 0 0.9em 14%; width:100%; font-size:1.1em; background-image:url(../Images/trait.gif); background-repeat:no-repeat; 
+					background-position:6% 50%;  background-size:5%; line-height:1.2em; letter-spacing:0.2em; margin:2.2em 0 1.3em 0; cursor:pointer; text-align:left; font-weight:400; font-family: 'QS', sans-serif;}
+
+	#formulaire2 .envoyerreduit {width:75%}
+
+#message-requete {font-family: 'QS', sans-serif;margin:0; letter-spacing:0.02em; font-size:1.3em; position:fixed; top:50px; left:50%; margin-left:-300px; width:500px; 
+		z-index:9999;  background-color:#fff; padding:50px; border-radius:12px; display:none; position:fixed; color:#2b4a50; cursor:pointer; 
+				background-image:url(../Images/croix.png); background-size:30px; background-position:96% 20px; background-repeat:no-repeat}
+	#message-requete h3 {color:#000; font-weight:500; padding-bottom:10px; font-size:1.1em; line-height: 1.6em}
+	#message-requete ul {margin:10px 0 10px 0; padding:0; list-style:none}
+	#message-requete ul li {list-style:none; padding:0.4em 4px 0.4em 2em; font-size:0.8em; margin:1px 0 0 0; display:block; width:auto}
+	#message-requete .message-ok { background-image:url(../Images/valide.png); background-repeat:no-repeat; background-position:5px 50%; background-size:1em; font-size:0.9em; font-weight:600}
+	#message-requete .message-erreur { background-image:url(../Images/erreur.png); background-repeat:no-repeat; background-position:5px 50%; background-size:1em}	
+	#fondmessage {background-color:#0b2226; z-index:9998; position:fixed; width:100%; height:100%; top:0; left:0; display:none}	
+
+
+
+
+@media screen and (max-width: 1650px) {
+.H #load {width:40px; /*height:10px*/margin-top:-5px; margin-left:-20px;}
+
+body {font-size: 0.8em}
+#logoacc {width: 200px; margin-top:-72px; margin-left: -100px}
+#a3 strong {right:22px}
+#btmenu {top:22px; right:22px; width:50px}
+	#btmenu #lignes {width:50px}
+	#b1, #b2, #b3 {width:24px; height: 2px; margin-left:13px}
+	#b1 {margin-top:15px} #b2 {margin-top:6px} #b3 {margin-top: 6px; margin-bottom: 15px}
+#btmenu #fermer {width:50px; height:50px}
+	#btmenu #fermer b {width:21px;height:2px;top:25px; left:14px}
+	
+
+
+#remonte {width:37px; height:37px}
+	#remonte img {width:16px; margin-left:-8px; margin-top:-8px}	
+
+#presentation h2 {padding-top:4.5em; padding-bottom:4.5em; }
+#presentation2 {width: 75%; max-width: 1150px}
+#presentation3 h2 {padding-top:4.5em; padding-bottom: 2em; }
+#presentation4 {width: 75%;max-width: 1150px}
+#visusflotantInt {width: 75%; max-width: 1150px}
+#logobas {width: 120px}	
+#logoint {width: 130px}
+	
+#message-requete {top:40px; margin-left:-240px; width:400px;padding:40px; background-size:26px; background-position:96% 16px}
+	#message-requete h3 {padding-bottom:8px}
+	#message-requete ul {margin:8px 0 8px 0}
+	
+	#formulaire2 {width:600px}
+		#formulaire2 .labcheckbox2 {padding-left:29px;padding-top: 0.3em;}
+		#formulaire2 input.box2 {width:16px; height:16px}	
+		#formulaire2 .labcheckbox {padding-left:30px;padding-top: 0.3em}
+		#formulaire2 input.box {width:18px; height:18px}	
+	
+}
+	
+	
+
+
+
+
+
+@media screen and (max-width:1320px) {
+body {font-size: 0.72em}
+#logoacc {width: 180px; margin-top:-64px; margin-left: -90px}
+	
+	
+#presentation h2 {font-size:4em}
+	#presentation .img84 {width: 88%}
+#presentation2 {width: 80%}
+	#presentation2 h1 {font-size: 3em}
+#presentation3 h2 {font-size:4em}
+	#presentation3 .img84 {width: 88%}
+#presentation4 {width: 80%;}
+	#presentation4 h2 {font-size: 3em}
+#visusflotantInt {width: 80%}
+
+#logoint {width: 116px}	
+#fondHprojets {height:28em}
+#titreprojets {right: 4%}
+.projetsint {width: 88%}
+	
+.projetint {width: 88%}
+.largeurreduite {width: 88%}
+#titreprojets3 {right: 6%;}
+.imgC1 {width: 94%}
+.blocDgauche {width: 44%; margin-left:6%}
+	
+.aproposint {width: 88%}
+#titreapropos {left: 23%;}
+.AproposA2a {padding-top:4.5em; padding-bottom:2.5em}
+.AproposA2b {padding-top:2.5em;}	
+	
+.blocJ { margin-top:14em}	
+.blocJgauche {width: 33%; margin-left: 5%}
+	
+.echange a {font-size: 4em}
+#echangeons li a {font-size:3em}
+#bas {padding: 4em 0 3em 0}
+#logobas {width: 100px; }
+	
+#formulaire2 {width:540px}
+		#formulaire2 .labcheckbox2 {padding-top: 0.4em;}	
+		#formulaire2 .labcheckbox {padding-left:26px;padding-top: 0.45em}
+		#formulaire2 input.box {width:16px; height:16px}
+	
+}
+
+
+
+@media screen and (max-width:1140px) {
+
+	
+#presentation h2 {font-size:3.7em}
+	#presentation2 h1 {font-size: 2.6em}
+#presentation3 h2 {font-size:3.7em}
+	#presentation4 h2 {font-size: 2.6em}
+#fondHprojets {height:26em}
+	#projets ul .projetsB {width: 58%; }
+	#projets ul .projetsC {width: 35%;margin-bottom: 10em }
+.echange a {font-size: 3.7em}
+#echangeons li a {font-size:2.8em}
+	
+.textA {width: 42%; margin-left: 0%; margin-top: 10em}
+#projet h1 {padding-bottom:0.7em}
+.textC {width: 50%}
+#projet h4 {font-size: 3.2em}
+#projet .textC p {margin-left: 20%; }
+.imgC2 {width: 42%}
+#projet .blocDgauche p {margin-left: 15%}
+.blocEdroite {width: 40%}
+#projet .ambiance p {width: 40%; }
+
+.H #fondapropos {left: 17%; width: 75%}	
+.AproposA1 {float: left; width: 38%}
+.AproposA2 {float: left; width: 46%; margin-left:4%}
+#apropos h2, #apropos h4 {padding-bottom:0.7em}
+.blocJ { margin-top:6em; margin-top:13em}
+.blocJgauche {width: 38%; margin-left: 0%; }
+.blocJdroite {width: 50%; margin-right: 8%}
+.blocK .blocKIMG {width: 50%; right:8%}
+.blocK h4 {width: 48%; margin-left: 0%}
+.blocK p {width: 38%; margin-left: 0%}
+	
+.blocL { margin-top: 15em; padding-bottom:12em }
+.phrase1 {font-size: 1.6em; }
+.phrase2 {font-size: 2.8em; }
+.phrase3 {font-size: 2.8em; padding-left: 6em; }	
+#echangeons.margereduite {padding-top: 7em}
+	
+}
+
+
+
+@media screen and (max-width:980px) {
+	
+#MOB {display: block}
+.retMob {display:block; clear:both; width:0; height:0; line-height:0; margin:0; padding:0; float:none}
+	
+#logoacc {width: 160px; margin-top:-57px; margin-left: -80px}
+#a3 strong {font-size: 1.3em}
+	
+
+.navigation {width:100%; height:auto; position:relative; left:0;background-color:#021c21}
+	.H .navigation {width:100%; height: 100%; position: fixed; left:102%; bottom:auto; top:0; z-index:900; overflow:hidden; transform-origin:0 100%}
+	
+	.navigationInt {width:100%; height:100%; overflow: scroll; overflow-y: scroll; overflow-x: hidden;}
+	.H .navigationInt {height:100%}	
+	
+	.navigationInt ul {padding-left: 10%; padding-top: 6em; font-size: 0.85em; padding-bottom: 6em}
+	.navigationInt #n1 {padding-left: 9.5em}
+	.navigationInt #n3 {padding-left: 15em}
+	.navigationInt #n4 {padding-left: 13em}
+	.navigationInt #n5 {padding-left: 33.6em}
+	
+#presentation h2 {font-size:3.7em; width: 90%; margin-left: auto; margin-right: auto}
+	#presentation h2 br {display: none}
+	#presentation .img84 {width: 90%}
+#presentation2 {width: 90%;}
+	.pres2G {width: 40%; padding-top: 5em;}
+	.pres2D {width: 55%; padding-top: 5em;}
+	#presentation2 h1 {font-size: 2.4em}
+	#presentation2 .fondjaune {left:20%; width:30%}
+#presentation3 h2 {font-size:3.7em; width: 90%; margin-left: auto; margin-right: auto}
+	#presentation3 .img84 {width: 90%}
+#presentation4 {width: 90%;}
+	#presentation4 h2 {font-size: 2.4em}
+	
+#visusflotant {margin-top: 15em; padding-bottom: 7em}
+#visusflotantInt {width: 90%; padding-top: 22em; }
+#vf1 {width:78%}  #vf2 {width:20%; left:55%; top:19em}  #vf3 {width:22%; left:70%; top:8em}  #vf4 {width:12.5%; left:87%; top:10em}
+
+	
+.projetsint {width: 90%}
+.projetsintAccueil {padding-top:7.4em}
+	#logoint {width: 118px; /*left:50%; margin-left:-47px; top:3em; z-index: 50;*/ top:0; left:0; position: relative; margin:0 auto; padding: 3em 0}
+	.projetsintProjets {padding-top:0em}
+	#titreprojets2 {margin-top:94px; top:8em; right:unset; left:3%}
+	#titreprojets2 h3 {font-size: 7em} 
+	
+#fondHprojets {height:25em}
+#titreprojets {top:9em; right: 3%;}
+#titreprojets h3 {font-size: 7em}
+.projetsintAccueil ul {padding-top:5em}
+.projetsintProjets ul {padding-top:5.7em}
+#projets ul .projetsA {width: 100%; margin-bottom: 8em;}
+#projets ul .projetsB {width: 100%; float:none; margin-top:0; margin-bottom: 8em}
+#projets ul .projetsC {width: 60%; float:none; margin-top:0; margin-bottom: 8em}
+#projets ul li p {font-size: 1.15em}
+
+.projetint {width: 90%; padding-top:0}
+.largeurreduite {width: 90%}
+
+#titreprojets3 {margin-top:94px; top:7.5em; right:unset; left:3%}
+#titreprojets3 h3 {font-size:6em} 
+#contProjet{padding-top:10.8em}
+.textA {width:80%; margin-left:10%; margin-top:0em; float: none; text-align: left}
+.imgA {width: 100%; float:none; margin-bottom: 8em; }
+.imgC1 {width: 95%}
+
+.textB {width: 80%; margin-left: 10%; margin-top: 8em; margin-bottom: 10em}
+#projet .textcentre {text-align:left}
+
+#projet h1 {font-size: 2.2em; padding-bottom: 1em}
+#projet h2 {font-size: 2.2em; padding-bottom: 1em}
+#projet h4 {font-size: 2.7em}
+
+	
+.textC {width: 50%}
+	#projet .textC .titreTextC {padding-top: 8em; padding-bottom: 5em}
+	#projet .textC p {padding-top: 4em; margin-left: 0%; }
+	.imgC2 {width: 42%; margin-top: 8em}
+.blocD {padding-bottom: 6em}	
+.blocDgauche {width: 45%; margin-left:5%}	
+	.blocDgauche .imgD1 {margin-top: 4em}
+	#projet .blocDgauche p {margin-left: 0; margin-top: 2.4em}	
+.blocDdroite {width: 46%; margin-left: 4%}
+	
+.blocEdroite {width: 45%; margin-left: 4%; padding-top: 10em;}	
+	
+.blocHgauche {width: 100%; float: none; margin-bottom: 3em}
+.blocHdroite {width: 100%; float: none; margin-bottom: 3em}	
+
+.ambiance h5 {font-size: 5em}
+#projet .ambiance p {width:50%; padding-top: 2em}
+.va1 {top: 18em}
+.va2 {top: 3em}
+.va3 {top: 9em}	
+	
+.aproposint {width: 90%; padding-top:0em}
+#titreapropos {margin-top: 91px; top:13em; left: 13%;}
+#titreapropos h3 {font-size: 5.5em} 
+.H #fondapropos {top:6em; margin-top: 91px; left: 7%; width:86%; }
+#contapropos{padding-top: 14em;}
+.AproposA1 {width: 38%}
+.AproposA2 {width: 47%; margin-left:4%}	
+.AproposA2a {padding-top:2em; padding-bottom:2em}
+.AproposA2b {padding-top:3em; }	
+	
+/* contact */ 
+.H #apropos .AproposA2a h1.titrecontact {padding-right: 4em}
+.H #apropos .AproposA2a h2.titrecontact {font-size: 1.3em; padding-right: 0em; }
+#apropos .AproposA2b h1.titrecontact, #apropos .AproposA2b h2.titrecontact {font-size: 1.3em; padding-right:0em}
+#apropos .AproposA2b a {font-size:1em}
+	
+.blocK { margin-top:13em}
+
+.phrase1 {font-size: 1.4em; }
+.phrase2 {font-size: 2.8em; }
+.phrase3 {font-size: 2.8em; padding-left: 6em; }	
+	
+.echange a {font-size:3.7em}
+#echangeons li a {font-size:2.6em}
+#bas {padding: 4em 0 3em 0}
+#logobas {width: 88px}
+
+.margH20 {margin-top: 15em}	
+.margH18 {margin-top: 14em}	
+	
+#formulaire2 {width:500px}
+		#formulaire2 .labcheckbox2 {padding-top: 0.5em;}
+		#formulaire2 .labcheckbox {padding-top: 0.45em}
+}	
+
+
+
+
+
+
+
+
+@media screen and (max-width:710px) {
+.H #load {width:32px; /*height:8px*/margin-top:-4px; margin-left:-16px;}
+
+#MOB2 {display: block}
+	
+#logoacc {width: 140px; margin-top:-50px; margin-left: -70px}
+#a3 strong {font-size:1.2em; padding-bottom: 0.7em; padding-top: 1.1em;letter-spacing:0.06em}	
+	
+.navigationInt ul {padding-left: 7%; padding-top: 6em; font-size:0.8em; padding-bottom: 6em}
+	.navigationInt li a {padding-bottom:0.6em}
+	.navigationInt .iG span {padding-left: 0.6em}
+	.navigationInt .iG i {left:0}
+	.navigationInt .iD span {padding-right:0; padding-left: 0.6em}
+	.navigationInt .iD i {right:auto; left:0}
+.navigationInt #n1 {padding-left:0em}
+.navigationInt #n3 {padding-left:0em}
+.navigationInt #n4 {padding-left:0em}
+.navigationInt #n5 {padding-left:0em}
+	
+#presentation h2 {font-size:2.8em; padding-top: 4em; padding-bottom: 3em;}
+	.pres2G {width: 80%; float: none; padding-top: 5em;}
+	.pres2D {width: 100%; float: none; padding-top: 2.5em;}
+	#presentation2 h1 {font-size: 2.2em}
+	#presentation2 .fondjaune {left:70%; width:30%}
+#presentation3 h2 {font-size:2.8em}
+#presentation4 {margin-top: 10em; margin-bottom: 10em;}
+	#presentation4 h2 {font-size: 2.2em}
+	
+#visusflotant {margin-top: 13em; padding-bottom: 5em}
+#visusflotantInt {padding-top:13em; }
+#vf1 {width:78%}  #vf2 {width:20%; left:55%; top:12em}  #vf3 {width:22%; left:70%; top:6em}  #vf4 {width:12.5%; left:87%; top:7em}
+	
+.projetsintAccueil {padding-top:5em}
+	.projetsintAccueil ul {padding-top:5.7em}
+#logoint {width: 100px}
+#fondHprojets {height:20em}
+#titreprojets {top:7.8em; right: 2%;}
+#titreprojets h3 {font-size: 5.5em}
+
+
+#titreprojets2 {margin-top:94px; top:5em; right:unset; left:3%}
+	#titreprojets2 h3 {font-size: 4.5em} 
+.projetsintProjets ul {padding-top:2.5em}	
+	
+#projets ul .projetsA {margin-bottom: 6em;}
+#projets ul .projetsB { margin-bottom: 6em}
+#projets ul .projetsC {width: 80%; float:none; margin-bottom: 6em}
+#projets ul li a span {font-size: 2em; margin-top: 0.7em}
+#projets ul li a strong {font-size: 1.15em}
+#projets ul li p {font-size:1.15em; width: 100%}
+#projets ul li .ProjetsB2 p {width: 100%}	
+	
+#titreprojets3 {margin-top:94px; top:4em; right:unset; left:3%}
+#titreprojets3 h3 {font-size:3.8em} 
+#contProjet{padding-top:5em}
+.textA {width:90%; margin-left:5%;}
+.imgA {margin-bottom:6em; }	
+	#projet h1 {font-size: 2.2em; padding-bottom: 1em}
+	#projet h2 {font-size: 2.2em; padding-bottom: 1em}
+	#projet h4 {font-size: 2.2em}
+	#projet p {font-size: 1.1em}
+.textB {width: 90%; margin-left: 5%; margin-top: 6em; margin-bottom: 10em}
+.imgC1 {width: 95%}
+.textC {width: 95%; margin-left: 2.5%; float: none}
+#projet .textC .titreTextC {padding-top: 6em; padding-bottom:1em}
+#projet .textC p {padding-top:2em; margin-left: 0; width:100%}
+.H #projet .textC p {color:#fff}
+.imgC2 {width: 70%; margin-top: 6em;}
+	
+.blocDgauche {float: none; width: 90%; margin-left: 5%}
+	.blocDgauche .imgD1 {margin-top:0em}
+#projet .blocDgauche p {margin-left: 0; margin-top: 2em; text-align:left}
+.blocDdroite {float: none; width: 90%; margin-left:5%}
+.blocDdroiteimg1 {width:70%; margin-top: 3em}
+.blocDdroiteimg2 {width: 100%; margin-top:3em}
+	
+.blocEgauche {float: none; width: 70%}
+.blocEdroite {float: none; width: 100%; margin-left:0; padding-top:3em;}
+.blocF {float:none; width: 100%}
+
+.ambiance {padding-top: 6em}
+	.ambiance h5 {font-size: 3em; width:62%; padding: 0; margin: 0}
+#projet .ambiance p {width: 53%; margin-right: 47%; margin-top: 0; padding-top: 1em; font-size: 1em}
+.va1 {width: 23%; top: 11em; left: 59%}
+.va2 {width: 23%; top: 3em; left: 69%}
+.va3 {width: 13%; top: 5em; left: 87%}	
+	
+#suivant {font-size: 0.7em}	
+
+#titreapropos {margin-top: 78px; top:8em; left: 5%;}
+#titreapropos h3 {font-size: 4em} 
+.H #titreapropos h3 {color:#03424c;}
+	
+.H #fondapropos { display: none}
+.H #fondaproposMOB {position: absolute; top: 12em; left: 5%; width: 90%; background-color: #03424c; z-index: 5; height: 800px; visibility: hidden; transform-origin: 0 0; display: block}
+	
+#contapropos{padding-top: 4em; position: relative}
+.AproposA1 {float: none; width: 85%; z-index: 20; position: relative}
+.AproposA2 {float: none; width: 76%; margin-left:12%; z-index: 20; position: relative}	
+.AproposA2a {padding-top:3em; padding-bottom:2em}
+.AproposA2b {padding-top:3em;}		
+
+#apropos h1 {font-size: 1.1em}
+#apropos h2, #apropos h4 {font-size: 1.9em; padding-bottom: 1em}
+#apropos p {font-size: 1.1em}
+.H #apropos .AproposA2a h1 {font-size: 1.2em;}
+.H #apropos .AproposA2a p {font-size: 1.2em;}
+#apropos .AproposA2b p {font-size: 1.2em;}	
+	
+	
+.blocJ { margin-top:12em}	
+.blocJgauche {width: 96%; margin-left: 4%; float:none; text-align: right; padding-top: 4em}
+.blocJdroite {width: 100%; margin-right:0; margin-left: 0;float: none}
+	.blocJdroite .blocJd1 {width:80%; margin: 0 auto}
+	.blocJdroite .blocJd2 {width:50%; top:80%; left: unset; right: 0}	
+
+.blocK { margin-top:12em}
+	.blocK h4 {width: 96%; margin-left: 4%; padding-top:2em; text-align: left}
+.blocK p {width: 96%; margin-left: 4%; text-align: left}
+.blocK .blocKIMG {width: 100%; position: relative; top: 0; right:0}	
+
+.blocL { margin-top: 13em;  padding-bottom:10em }
+.phrase1 {font-size: 1.15em; }
+.phrase2 {font-size: 1.9em; }
+.phrase3 {font-size: 1.9em; padding-left: 3em; }	
+	
+.echange a {font-size:2.8em}
+.pagesG {float: left; width: 47%; text-align: right}
+.pagesD {float: right; width: 47%;}
+#echangeons li a {font-size:2.2em}
+	
+#bas {padding: 4em 0 4em 0}
+#logobas {width: 75px; float:none; margin-left:auto; margin-right: auto}
+.col1 {float:none; margin-left:0; width: 100%; text-align: center; margin-top: 2em}
+	.col1 strong {font-size:0.95em; padding-right:1.5em; padding-left:1.5em}
+	.col1 ul li a, .col1 ul li span {color:#03424c; font-weight:400; font-size: 1.05em; line-height:1.5em; letter-spacing: 0.04em}
+	/*.col1 ul li .light {color:#a5c3c5}*/
+.basplus {float: none; margin-right:0; text-align:center; margin-left:0; width:100%; margin-top: 3em}
+.reseaux{ padding-bottom: 1em}
+.reseaux li {margin-left: 0.5em; margin-right: 0.5em}
+.reseaux li a, .reseaux li span {width: 2.2em}
+#mentions {font-size:0.9em}
+
+	
+.margH20 {margin-top: 13em}
+.margH18 {margin-top: 12em}	
+.margH15 {margin-top: 10em}	
+	
+#votredemande h2 {font-size: 2.7em; letter-spacing:0.10em; padding-bottom: 0em}	
+#formulaire2 .titreformulaire {font-size: 1.15em; margin: 1.8em 0 0 0}
+	#formulaire2 {width:100%; font-size:1.1em;}
+		#formulaire2 .formgauche {width:100%; float:none;margin:1.3em 0 0 0}
+		#formulaire2 .formdroite {width:100%; float:none;margin:1.3em 0 0 0}
+		#formulaire2 .fromlong {margin:1em 0 0 0}
+		#formulaire2 textarea{height:13em; font-size: 1.1em}
+		#formulaire2 .labcheckbox2 {padding-left:24px;padding-top: 0.3em}
+		#formulaire2 input.box2 {width:16px; height:16px}
+		#formulaire2 .labcheckbox {padding-left:30px;padding-top: 0.35em}
+		#formulaire2 input.box {width:18px; height:18px}
+	#formulaire2 #envoyer {margin:2.8em 0 1.3em 0}
+	#formulaire2 .envoyerreduit {width:100%}
+#message-requete {font-size:1.2em; top:25px; left:5%; margin-left:0; width:78%; padding:20px 6%; background-size:15px; background-position:96% 15px;}
+	
+}
+
+
+@media screen and (max-width:450px) {
+	#a3 strong {font-size:1.1em; padding-bottom: 0.7em; padding-top: 1.1em;letter-spacing:0.06em}	
+	#echangeons li a {font-size:2em}
+.navigationInt ul {font-size: 0.75em}
+	
+#titreprojets3 {top:4.1em}
+#titreprojets3 h3 {font-size:3.8em} 
+	
+}
+
+@media screen and (max-width:400px) {
+#echangeons li a {font-size:1.8em}
+.navigationInt ul {font-size: 0.7em}
+#titreapropos h3 {font-size:3.6em} 
+#titreprojets3 {top:4.5em}
+#titreprojets3 h3 {font-size:3.6em} 
+}
+
+@media screen and (max-width:380px) {
+#echangeons li a {font-size:1.7em}
+.navigationInt ul {font-size: 0.6em}
+#titreapropos h3 {font-size:3.3em}
+#titreprojets3 {top:5em}
+#titreprojets3 h3 {font-size:3.3em} 
+}
+
+@media screen and (max-width:350px) {
+	#a3 strong {font-size:0.9em; padding-bottom: 0.7em; padding-top: 1.1em;letter-spacing:0.06em}
+	#echangeons li a {font-size:1.6em}
+.navigationInt ul {font-size: 0.55em}
+#titreapropos h3 {font-size:3em}
+#titreprojets3 h3 {font-size:3em} 
+}
+
+/* About page (ESMI): keep the founder heading clear of the photo */
+.blocKabout h4 {width: 26%}
+@media screen and (max-width: 2100px) { .blocKabout h4 {width: 31%} }
+@media screen and (max-width: 1140px) { .blocKabout h4 {width: 40%} }
+@media screen and (max-width: 710px) { .blocKabout h4 {width: 96%} }
+
+/* ESMI: full-screen 3D inspect viewer (Fichiers/esmi-inspect.js) */
+.esmiInspect {position: fixed; inset: 0; z-index: 100000; background: #c9c9c7; opacity: 0; visibility: hidden; transition: opacity .45s ease, visibility 0s linear .45s}
+.esmiInspect.on {opacity: 1; visibility: visible; transition: opacity .45s ease}
+.esmiInspect iframe {display: block; width: 100%; height: 100%; border: 0}
+html.esmiInspectOpen, html.esmiInspectOpen body {overflow: hidden}
+[data-esmi-inspect] {cursor: pointer}
+.inspectBtnWrap {width: 34%; margin-left: 4%; text-align: right; position: relative; z-index: 20; margin-top: 2.2em}
+.inspectBtn {display: inline-flex; align-items: center; gap: .7em; padding: .9em 1.6em; border: 1px solid #03424c; border-radius: 999px; background: transparent; color: #03424c;
+	font-family: 'QS', sans-serif; font-size: 1em; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; transition: background .3s, color .3s}
+.inspectBtn:hover, .inspectBtn:focus-visible {background: #03424c; color: #fff}
+.inspectBtn svg {width: 1.25em; height: 1.25em; flex: none}
+@media screen and (max-width: 1140px) { .inspectBtnWrap {width: 38%; margin-left: 0%} }
+@media screen and (max-width: 710px) { .inspectBtnWrap {width: 96%; margin-left: 4%; text-align: left} }

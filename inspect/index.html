@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" class="esmi-page" data-page="inspect">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#c9c9c7">
+  <meta name="robots" content="noindex">
+  <title>Inspect the ESMI boat in 3D</title>
+  <link rel="icon" type="image/png" href="../Images/favicon-32.png" sizes="32x32">
+  <link rel="preload" href="./assets/fonts/NeueMontreal-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/fonts/SaolDisplay-LightItalic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="./assets/inspect/esmi-eboat.glb" as="fetch" type="model/gltf-binary" crossorigin>
+  <link rel="stylesheet" href="./inspect.css">
+  <style>
+    /* ESMI website integration: a close control in place of the original site navigation */
+    .ins-close{margin-left:auto;display:inline-flex;align-items:center;gap:10px;padding:10px 18px;border:1px solid rgba(17,17,17,.25);border-radius:999px;
+      background:rgba(255,255,255,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);color:inherit;font:inherit;font-size:18px;line-height:1;cursor:pointer;transition:background .25s,border-color .25s}
+    .ins-close:hover,.ins-close:focus-visible{background:#fff;border-color:rgba(17,17,17,.5)}
+    .ins-close span{font-size:22px;line-height:.8}
+    @media(max-width:760px){.ins-close{font-size:15px;padding:8px 14px}}
+  </style>
+  <script type="importmap">
+  {"imports":{
+    "three":"https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  }}
+  </script>
+</head>
+<body>
+  <main class="ins" aria-labelledby="ins-title">
+    <div class="ins-stage">
+      <canvas class="ins-canvas" aria-label="Interactive 3D model of the ESMI boat. Drag to turn it, scroll or pinch to zoom." role="img"></canvas>
+      <img class="ins-fallback" src="./assets/v3/frames/frame-0241.webp" alt="The ESMI boat, fully assembled" hidden>
+    </div>
+
+    <header class="ins-header">
+      <span class="ins-logo"><img class="logo-mark" src="./assets/film-v3/esmi-mark.svg?v=2" alt="" width="60" height="32">ESMI</span>
+      <button type="button" class="ins-close" aria-label="Close the 3D viewer">Close <span aria-hidden="true">×</span></button>
+    </header>
+
+    <div class="ins-copy">
+      <p class="ins-eyebrow">INSPECT</p>
+      <h1 id="ins-title"><span class="ins-serif">Every angle.</span><span class="ins-sans">Up close.</span></h1>
+      <p class="ins-hint">Drag to turn the boat. Scroll or pinch to zoom. Use the slider to pull it apart and put it back together.</p>
+    </div>
+
+    <nav class="ins-views" aria-label="Camera views">
+      <button type="button" class="ins-view" data-view="overview" aria-pressed="true">Overview</button>
+      <button type="button" class="ins-view" data-view="bow" aria-pressed="false">Twin hulls</button>
+      <button type="button" class="ins-view" data-view="helm" aria-pressed="false">Helm</button>
+      <button type="button" class="ins-view" data-view="seats" aria-pressed="false">Seating</button>
+      <button type="button" class="ins-view" data-view="solar" aria-pressed="false">Solar canopy</button>
+      <button type="button" class="ins-view" data-view="drive" aria-pressed="false">Drive</button>
+    </nav>
+
+    <div class="ins-tools">
+      <label class="ins-explode" hidden>
+        <span>Assembled</span>
+        <input type="range" min="0" max="1" step="0.001" value="0" aria-label="Pull the boat apart">
+        <span>Pulled apart</span>
+      </label>
+      <div class="ins-zoom" role="group" aria-label="Zoom">
+        <button type="button" class="ins-circle" data-zoom="out" aria-label="Zoom out">−</button>
+        <button type="button" class="ins-circle" data-zoom="in" aria-label="Zoom in">+</button>
+      </div>
+      <button type="button" class="ins-pill ins-reset">Reset view <span aria-hidden="true">↺</span></button>
+    </div>
+
+    <aside class="ins-inventory" aria-label="Parts inventory" data-open="false" hidden>
+      <button type="button" class="ins-inv-toggle" aria-expanded="false" aria-controls="ins-inv-body">
+        <span>Inventory</span><span class="ins-inv-count">0/0</span><span class="ins-inv-chevron" aria-hidden="true"></span>
+      </button>
+      <div class="ins-inv-body" id="ins-inv-body">
+        <p class="ins-inv-hint">Add or remove parts to build the boat, and pick a colour for each.</p>
+        <div class="ins-inv-actions">
+          <button type="button" data-inv="all">Add all</button>
+          <button type="button" data-inv="none">Clear all</button>
+          <button type="button" data-inv="colors">Reset colours</button>
+        </div>
+        <ul class="ins-inv-list"></ul>
+      </div>
+    </aside>
+
+    <p class="ins-status" role="status"><span class="ins-dot"></span><span class="ins-status-text">Loading the model</span></p>
+  </main>
+  <div class="ins-grain" aria-hidden="true"></div>
+  <script type="module" src="./inspect.js"></script>
+  <script>
+    // If the 3D library cannot load at all (offline, blocked CDN), show a still instead.
+    setTimeout(function(){ if (document.documentElement.classList.contains('ins-booted')) return;
+      document.querySelector('.ins-fallback').hidden = false; document.querySelector('.ins-canvas').hidden = true;
+      document.querySelector('.ins-status-text').textContent = 'The 3D viewer could not load. Showing a still of the boat.';
+      document.querySelectorAll('.ins-views, .ins-tools, .ins-inventory').forEach(function(el){ el.hidden = true; }); }, 9000);
+
+    // Close: inside the website's full-screen layer, ask the page to close it; opened directly, go back.
+    function closeViewer() {
+      if (window.parent !== window) { window.parent.postMessage({ esmiInspect: 'close' }, '*'); }
+      else if (history.length > 1) { history.back(); }
+      else { location.href = '../amenagement-interieur.html'; }
+    }
+    document.querySelector('.ins-close').addEventListener('click', closeViewer);
+    addEventListener('keydown', function (e) { if (e.key === 'Escape') closeViewer(); });
+  </script>
+</body>
+</html>

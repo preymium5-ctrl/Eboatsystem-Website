@@ -1,0 +1,43 @@
+/* ESMI homepage hero: the D:\ESMI WEB dock landing (video + cursor/ripple effects) placed under the intro tiles.
+   Rules adapted from landing.css / landing-effects.css of that project. */
+#accueil .landing-root{position:absolute;inset:0;z-index:0;overflow:hidden;isolation:isolate;background:#155b77;opacity:0;visibility:hidden;transition:opacity .9s ease}
+#accueil .landing-root.is-on{opacity:1;visibility:visible}
+#accueil.heroLandingDone #aG,#accueil.heroLandingDone #aD{display:none}
+#accueil.heroLandingDone #logoacc{pointer-events:none}
+
+.landing-media,.landing-veil,.landing-grain{position:absolute;inset:0;pointer-events:none}
+.landing-media{z-index:-3;transform:scale(1.025);background:#155b77}
+.landing-poster{position:absolute;inset:0;display:block;z-index:0;pointer-events:none}
+.landing-poster img{display:block;width:100%;height:100%;object-fit:cover;object-position:100% 100%}
+.landing-video{position:absolute;inset:0;z-index:1;display:block;width:100%;height:100%;object-fit:cover;object-position:100% 100%;pointer-events:none;transition:opacity .6s ease}
+.landing-veil{z-index:-2;background:linear-gradient(180deg,#061e343d 0%,#061e3408 25%,#061e3400 57%,#061e343d 100%),radial-gradient(ellipse at 50% 43%,#06283b24,transparent 58%)}
+.landing-grain{z-index:4;opacity:.025;mix-blend-mode:soft-light;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23000' filter='url(%23n)' opacity='.65' d='M0 0h180v180H0z'/%3E%3C/svg%3E");background-size:180px 180px}
+.landing-cursor{position:fixed;left:0;top:0;z-index:8;width:42px;height:42px;margin:-21px 0 0 -21px;border:1px solid #ffffffe0;border-radius:50%;pointer-events:none;opacity:0;transform:translate3d(var(--landing-cursor-x,-100px),var(--landing-cursor-y,-100px),0);transition:opacity .2s,width .2s,height .2s}
+.landing-root.landing-pointer-active .landing-cursor{opacity:1}
+
+/* landing-effects.css */
+.landing-refraction{position:absolute;inset:0;z-index:2;display:block;width:100%;height:100%;opacity:0;pointer-events:none}
+.landing-refraction.is-ready{opacity:1}
+.landing-root[data-pointer-ready="true"] .landing-media>:is(.landing-poster,.landing-video,.landing-refraction){
+  transform:perspective(var(--landing-projection-distance,1500px)) rotateX(calc(-1 * var(--landing-view-pitch,0deg))) rotateY(var(--landing-view-yaw,0deg));
+  transform-origin:50% 50%;backface-visibility:hidden}
+.landing-root[data-pointer-ready="true"] .landing-media{
+  transform:translate3d(var(--landing-view-x,0px),var(--landing-view-y,0px),0) scale(var(--landing-camera-scale,1.1));
+  transition:none;will-change:transform}
+.landing-root[data-pointer-ready="true"] .landing-cursor{
+  display:block;width:42px;height:42px;margin:-21px 0 0 -21px;border:1px solid #ffffffe0;background:#ffffff05;
+  transform:translate3d(var(--landing-cursor-x,-100px),var(--landing-cursor-y,-100px),0) scale(var(--landing-cursor-scale,1));
+  transition:opacity .2s,border-color .2s,background-color .2s;will-change:transform}
+.landing-root[data-cursor-mode="control"] .landing-cursor{border-color:#ffffffb3;background:#ffffff1f}
+.landing-root[data-pointer-ready="true"].landing-pointer-active{cursor:none}
+
+@media(max-width:760px){
+  .landing-cursor{display:none}
+  .landing-root[data-media-variant="portrait"] .landing-video,.landing-root[data-media-variant="portrait"] .landing-poster img{object-position:50% 75%}
+  .landing-veil{background:linear-gradient(180deg,#061e3440 0%,#061e3410 24%,#061e3420 47%,#061e3400 70%,#061e344a 100%)}
+}
+@media(prefers-reduced-motion:reduce){
+  .landing-refraction{display:none}
+  .landing-media{transform:none!important}
+  .landing-cursor{display:none}
+}

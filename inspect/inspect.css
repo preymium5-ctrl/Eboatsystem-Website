@@ -1,0 +1,170 @@
+/* Inspect page (inspect.html): a full-screen 3D model in the landing page's look. */
+@font-face{font-family:'Landing Neue';src:url('./assets/fonts/NeueMontreal-Regular.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Landing Saol';src:url('./assets/fonts/SaolDisplay-LightItalic.woff2') format('woff2');font-weight:300;font-style:italic;font-display:swap}
+
+:root{--ink:#242425;--muted:#5d5f62;--line:#24242533;--sans:'Landing Neue',Arial,sans-serif;--serif:'Landing Saol','Times New Roman',serif;--gutter:36px}
+html{scrollbar-width:none}html::-webkit-scrollbar{display:none}
+html,body{margin:0;height:100%;overflow:hidden;background:#c9c9c7}
+body{color:var(--ink);font-family:var(--sans);font-weight:400;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;letter-spacing:inherit;background:none;border:0;padding:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+.ins{position:fixed;inset:0;overflow:hidden;isolation:isolate}
+
+/* Stage: the studio backdrop matches the renders (light cove fading to grey). */
+.ins-stage{position:absolute;inset:0;z-index:0;background:radial-gradient(120% 85% at 50% 38%,#e3e3e1 0%,#d2d2d0 45%,#b9b9b7 100%)}
+.ins-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;outline:none}
+.ins-canvas{cursor:grab}.ins-canvas:active{cursor:grabbing}
+.ins-fallback{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* Header, as on the landing. */
+.ins-header{position:absolute;top:0;left:0;right:0;z-index:5;display:flex;align-items:center;gap:27px;padding:27px var(--gutter);pointer-events:none}
+.ins-header>*{pointer-events:auto}
+.ins-logo{font-size:44px;line-height:1.16;letter-spacing:-2.8px;white-space:nowrap}
+.ins-nav{display:flex;align-items:center;gap:27px;margin-left:auto}
+.ins-nav-link{position:relative;padding:6px 0;font-size:23px;line-height:1.2;white-space:nowrap}
+.ins-nav-link:after{content:'';position:absolute;bottom:1px;left:0;width:100%;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .3s}
+.ins-nav-link:hover:after,.ins-nav-link[aria-current="page"]:after{transform:scaleX(1);transform-origin:left}
+
+/* Title block. */
+.ins-copy{position:absolute;left:var(--gutter);bottom:118px;z-index:4;pointer-events:none;max-width:min(36vw,560px)}
+.ins-eyebrow{margin:0 0 14px;font-size:clamp(15px,1.05vw,19px);letter-spacing:-.4px;line-height:1.25}
+.ins-copy h1{margin:0 0 18px;font-weight:400;font-size:clamp(54px,5vw,98px);line-height:.92;letter-spacing:-.055em}
+.ins-copy h1>span{display:block;white-space:nowrap}
+.ins-serif{font-family:var(--serif);font-style:italic;font-weight:300;letter-spacing:-.045em;line-height:.98}
+.ins-sans{font-size:1.04em;letter-spacing:-.06em;line-height:.95}
+.ins-hint{margin:0;font-size:clamp(15px,1.05vw,19px);line-height:1.35;letter-spacing:-.3px;color:var(--muted)}
+
+/* Camera views: a row of quiet text pills along the bottom. */
+.ins-views{position:absolute;left:var(--gutter);bottom:34px;z-index:4;display:flex;flex-wrap:wrap;gap:6px;padding:4px;border-radius:40px;background:#ffffff59;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.ins-view{position:relative;overflow:hidden;isolation:isolate;padding:9px 16px;border-radius:30px;font-size:16px;letter-spacing:-.3px;line-height:1.1;transition:color .45s cubic-bezier(.22,1,.36,1)}
+.ins-view:before{content:'';position:absolute;left:-15%;right:-15%;top:100%;height:260%;border-radius:50%;background:#141518;z-index:-1;transition:transform .7s cubic-bezier(.22,1,.36,1)}
+.ins-view[aria-pressed="true"]{background:#fff}
+@media(hover:hover){.ins-view:hover{color:#f6f3ee}.ins-view:hover:before{transform:translateY(-62%)}}
+
+/* Tools, bottom right. */
+.ins-tools{position:absolute;right:var(--gutter);bottom:34px;z-index:4;display:flex;align-items:center;gap:18px}
+.ins-explode{display:flex;align-items:center;gap:12px;padding:10px 18px;border-radius:40px;background:#ffffff59;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font-size:15px;letter-spacing:-.3px;white-space:nowrap}
+.ins-explode[hidden]{display:none}
+.ins-explode input{width:clamp(110px,10vw,180px);accent-color:#141518;cursor:pointer}
+.ins-zoom{display:flex;gap:8px}
+.ins-circle{display:inline-grid;place-items:center;width:50px;height:50px;border-radius:50%;background:#fff;font-size:24px;line-height:1;transition:transform .3s,background .3s}
+.ins-circle:hover{transform:scale(1.055);background:#fcf8f6}
+.ins-pill{position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;gap:12px;min-height:50px;padding:11px 26px;border-radius:50px;background:#fff;font-size:18px;letter-spacing:-.4px;white-space:nowrap;transition:color .45s cubic-bezier(.22,1,.36,1)}
+.ins-pill:before{content:'';position:absolute;left:-15%;right:-15%;top:100%;height:260%;border-radius:50%;background:#141518;z-index:-1;transition:transform .7s cubic-bezier(.22,1,.36,1)}
+@media(hover:hover){.ins-pill:hover{color:#f6f3ee}.ins-pill:hover:before{transform:translateY(-62%)}}
+
+/* Loading. */
+.ins-status{position:absolute;right:var(--gutter);top:118px;z-index:4;display:flex;align-items:center;gap:9px;margin:0;font-size:14px;color:var(--muted);transition:opacity .5s}
+.ins-status.is-done{opacity:0}
+.ins-dot{width:5px;height:5px;border-radius:50%;background:var(--ink);animation:ins-breathe 1.6s ease-in-out infinite}
+@keyframes ins-breathe{50%{opacity:.25}}
+
+/* Grain, as on the landing. */
+.ins-grain{position:fixed;inset:0;z-index:30;pointer-events:none;opacity:.065;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23000' filter='url(%23n)' opacity='.65' d='M0 0h180v180H0z'/%3E%3C/svg%3E");background-size:180px}
+:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+
+@media(max-width:1100px){:root{--gutter:28px}.ins-logo{font-size:38px}.ins-nav-link{font-size:20px}.ins-view{font-size:14px;padding:8px 12px}}
+@media(max-width:760px){
+  :root{--gutter:16px}
+  .ins-header{padding:20px var(--gutter);gap:14px}
+  .ins-logo{font-size:30px;letter-spacing:-2px}
+  .ins-nav{gap:13px}.ins-nav-link{font-size:15px}
+  .ins-copy{top:86px;bottom:auto;max-width:none}
+  .ins-copy h1{font-size:44px;margin-bottom:10px}.ins-eyebrow{font-size:13px;margin-bottom:8px}.ins-hint{font-size:14px}
+  .ins-status{top:86px}
+  .ins-views{left:var(--gutter);right:var(--gutter);bottom:84px;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;border-radius:30px}
+  .ins-views::-webkit-scrollbar{display:none}
+  .ins-view{flex:none;font-size:13px}
+  .ins-tools{left:var(--gutter);right:var(--gutter);bottom:20px;justify-content:space-between;gap:10px}
+  .ins-explode{padding:8px 14px;gap:8px}.ins-explode span{display:none}.ins-explode input{width:96px}
+  .ins-circle{width:44px;height:44px;font-size:20px}
+  .ins-pill{min-height:44px;padding:8px 16px;font-size:14px}
+}
+/* ESMI wave mark beside the wordmark. */
+.ins-logo{display:inline-flex;align-items:center}
+.ins-logo>.logo-mark{height:1.15em;width:auto;margin:0 .22em 0 0;flex:none}
+
+/* Parts inventory: a frosted panel on the right. Each part can be added or removed and
+   repainted; on small screens it folds into a pill that opens over the scene. */
+.ins-inventory{position:absolute;right:var(--gutter);top:112px;z-index:6;width:min(360px,calc(100vw - 2*var(--gutter)));max-height:calc(100% - 112px - 112px);display:flex;flex-direction:column;border-radius:26px;background:#ffffff66;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 40px #1415180f;overflow:hidden}
+.ins-inventory[hidden]{display:none}
+.ins-inv-toggle{display:flex;align-items:center;gap:10px;width:100%;padding:16px 20px;font-size:18px;letter-spacing:-.4px;text-align:left}
+.ins-inv-count{font-size:13px;color:var(--muted);letter-spacing:0}
+.ins-inv-chevron{margin-left:auto;width:9px;height:9px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .35s cubic-bezier(.22,1,.36,1)}
+.ins-inventory[data-open="true"] .ins-inv-chevron{transform:translateY(2px) rotate(-135deg)}
+.ins-inv-body{display:flex;flex-direction:column;min-height:0;padding:0 14px 14px}
+.ins-inventory[data-open="false"] .ins-inv-body{display:none}
+.ins-inventory[data-open="false"]{width:auto}
+.ins-inv-hint{margin:0 6px 12px;font-size:13px;line-height:1.35;color:var(--muted)}
+.ins-inv-actions{display:flex;gap:6px;margin:0 0 10px}
+.ins-inv-actions button{flex:1;padding:8px 6px;border-radius:20px;background:#ffffffa6;font-size:13px;letter-spacing:-.2px;transition:background .25s,color .25s}
+@media(hover:hover){.ins-inv-actions button:hover{background:#141518;color:#f6f3ee}}
+.ins-inv-list{list-style:none;margin:0;padding:0;overflow-y:auto;scrollbar-width:thin;display:flex;flex-direction:column;gap:6px}
+.ins-inv-item{border-radius:16px;background:#ffffff8c;transition:background .3s,opacity .3s}
+.ins-inv-item.is-off{background:#ffffff40}
+.ins-inv-row{display:flex;align-items:center;gap:10px;padding:7px 12px 7px 7px}
+.ins-inv-name{flex:1;display:flex;align-items:center;gap:12px;min-width:0;cursor:pointer}
+.ins-inv-name input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+/* Preview tile: the part rendered on the studio grey of the Inspect stage. */
+.ins-inv-thumb{position:relative;flex:none;width:78px;height:58px;border-radius:13px;overflow:hidden;background:radial-gradient(120% 110% at 50% 28%,#fbfbfa 0%,#e9e9e7 55%,#d6d6d4 100%);box-shadow:inset 0 0 0 1px #0000000f,0 1px 2px #14151808;transition:box-shadow .3s,background .3s}
+.ins-inv-thumb img{display:block;width:100%;height:100%;object-fit:contain;transform:scale(.98);transition:transform .6s cubic-bezier(.22,1,.36,1),filter .35s,opacity .35s}
+.ins-inv-thumb img:not([src]){opacity:0}
+@media(hover:hover){.ins-inv-item:hover .ins-inv-thumb img{transform:scale(1.07)}}
+.ins-inv-check{position:absolute;left:6px;top:6px;width:18px;height:18px;border-radius:6px;background:#ffffffd9;box-shadow:inset 0 0 0 1.5px #24242559;display:grid;place-items:center;transition:background .25s,box-shadow .25s}
+.ins-inv-check:after{content:'';width:8px;height:4.5px;border-left:1.7px solid #fff;border-bottom:1.7px solid #fff;transform:translateY(-1px) rotate(-45deg);opacity:0;transition:opacity .2s}
+.ins-inv-name input:checked+.ins-inv-thumb .ins-inv-check{background:#141518;box-shadow:none}
+.ins-inv-name input:checked+.ins-inv-thumb .ins-inv-check:after{opacity:1}
+.ins-inv-name input:focus-visible+.ins-inv-thumb{box-shadow:inset 0 0 0 1px #0000000f,0 0 0 2px var(--ink)}
+.ins-inv-text{display:flex;flex-direction:column;gap:3px;min-width:0}
+.ins-inv-title{font-size:15px;line-height:1.15;letter-spacing:-.3px;transition:color .3s}
+.ins-inv-note{font-size:12px;line-height:1.25;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Removed parts: a faded, greyed preview with an empty check. */
+.ins-inv-item.is-off .ins-inv-thumb{background:#ececea80;box-shadow:inset 0 0 0 1px #24242526}
+.ins-inv-item.is-off .ins-inv-thumb img{filter:grayscale(1);opacity:.38}
+.ins-inv-item.is-off .ins-inv-title{color:var(--muted)}
+.ins-inv-swatches{display:flex;flex-direction:column;gap:6px}
+.ins-inv-swatch{width:24px;height:24px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px #0000001f,0 0 0 2px #ffffffcc;transition:transform .25s,box-shadow .25s}
+.ins-inv-swatch:hover,.ins-inv-swatch[aria-expanded="true"]{transform:scale(1.12);box-shadow:inset 0 0 0 1px #0000001f,0 0 0 2px #141518}
+.ins-inv-palette{padding:2px 12px 12px}
+.ins-inv-palette[hidden]{display:none}
+.ins-inv-palette-title{margin:0 0 8px;font-size:12px;letter-spacing:.2px;color:var(--muted);text-transform:uppercase}
+.ins-inv-colors{display:flex;flex-wrap:wrap;gap:7px}
+.ins-inv-color,.ins-inv-custom{position:relative;width:26px;height:26px;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 1px #0000001f;transition:transform .2s,box-shadow .2s;cursor:pointer}
+.ins-inv-color:hover{transform:scale(1.12)}
+.ins-inv-color[aria-pressed="true"]{box-shadow:inset 0 0 0 1px #0000001f,0 0 0 2px #fff,0 0 0 3.5px #141518}
+.ins-inv-custom{background:conic-gradient(#e0473c,#f0c93a,#4fbf6a,#31adb5,#2f5fb3,#9b4fc4,#e0473c);overflow:hidden}
+.ins-inv-custom input{position:absolute;inset:-6px;width:calc(100% + 12px);height:calc(100% + 12px);opacity:0;cursor:pointer;border:0;padding:0}
+@media(max-width:1100px){.ins-inventory{top:96px;max-height:calc(100% - 96px - 104px)}}
+@media(max-width:760px){
+  .ins-inventory{top:auto;bottom:140px;right:var(--gutter);max-height:calc(100% - 140px - 200px)}
+  .ins-inventory[data-open="true"]{left:var(--gutter);width:auto;max-height:min(44vh,calc(100% - 340px))}
+  .ins-inv-toggle{padding:12px 16px;font-size:15px}
+  .ins-inv-hint{display:none}
+  .ins-inv-thumb{width:66px;height:50px}
+  /* Keep the boat in view while the sheet is open: the title steps aside. */
+  .ins:has(.ins-inventory[data-open="true"]) .ins-copy{opacity:0;transition:opacity .3s}
+}
+/* Variant switch (deck size): a small segmented control under the row. */
+.ins-inv-variants{display:flex;gap:4px;margin:0 12px 10px 97px;padding:3px;border-radius:20px;background:#14151810}
+.ins-inv-variant{flex:1;padding:6px 10px;border-radius:16px;font-size:13px;letter-spacing:-.2px;color:var(--muted);transition:background .3s,color .3s,box-shadow .3s}
+.ins-inv-variant[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 1px 4px #14151814}
+@media(hover:hover){.ins-inv-variant:not([aria-pressed="true"]):hover{color:var(--ink)}}
+.ins-inv-item.is-off .ins-inv-variants{opacity:.5}
+@media(max-width:760px){.ins-inv-variants{margin-left:85px}}
+
+/* Customizer (inspect.html?part=<id>): one part on its own, opened from the part cards. */
+.ins-back{display:none;pointer-events:auto;margin:0 0 18px;font-size:15px;letter-spacing:-.2px;color:var(--muted);transition:color .25s}
+.ins-back:hover{color:var(--ink)}
+.ins-part-mode .ins-back{display:inline-block}
+.ins-part-mode .ins-views,.ins-part-mode .ins-explode{display:none!important}
+.ins-part-mode .ins-copy h1>span{white-space:normal}
+.is-customizer .ins-inv-name{cursor:default}
+.is-customizer .ins-inv-check{display:none}
+.is-customizer .ins-inv-palette{padding-top:6px}
+.ins-inv-steps{display:flex;align-items:center;gap:6px;margin:0 0 10px}
+.ins-inv-steps button,.ins-inv-allparts,.ins-inv-onboat{padding:8px 12px;border-radius:20px;background:#ffffffa6;font-size:13px;letter-spacing:-.2px;white-space:nowrap;transition:background .25s,color .25s}
+.ins-inv-allparts{flex:1;text-align:center}
+.is-customizer .ins-inv-actions .ins-inv-onboat{flex:1.4;text-align:center;padding:8px 6px;border-radius:20px;background:#141518;color:#f6f3ee;font-size:13px}
+@media(hover:hover){.ins-inv-steps button:hover,.ins-inv-allparts:hover{background:#141518;color:#f6f3ee}}
+.is-customizer .ins-inv-actions{margin:10px 0 0}
