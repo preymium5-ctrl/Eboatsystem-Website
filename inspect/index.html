@@ -102,7 +102,7 @@
     function closeViewer() {
       if (window.parent !== window) { window.parent.postMessage({ esmiInspect: 'close' }, '*'); }
       else if (history.length > 1) { history.back(); }
-      else { location.href = '../amenagement-interieur.html'; }
+      else { location.href = '../services.html'; }
     }
     document.querySelector('.ins-close').addEventListener('click', closeViewer);
     addEventListener('keydown', function (e) { if (e.key === 'Escape') closeViewer(); });

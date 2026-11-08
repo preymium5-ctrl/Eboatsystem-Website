@@ -1,0 +1,64 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "",
+  "installCommand": "",
+  "cleanUrls": false,
+  "redirects": [
+    {
+      "source": "/studio-architecture-interieure.html",
+      "destination": "/about.html",
+      "permanent": true
+    },
+    {
+      "source": "/amenagement-interieur.html",
+      "destination": "/services.html",
+      "permanent": true
+    },
+    {
+      "source": "/projets-architecture-interieure.html",
+      "destination": "/portfolio.html",
+      "permanent": true
+    },
+    {
+      "source": "/creation-site-mentions.html",
+      "destination": "/legal-notice.html",
+      "permanent": true
+    },
+    {
+      "source": "/studio-architecture-interieure.php",
+      "destination": "/about.html",
+      "permanent": true
+    },
+    {
+      "source": "/amenagement-interieur.php",
+      "destination": "/services.html",
+      "permanent": true
+    },
+    {
+      "source": "/projets-architecture-interieure.php",
+      "destination": "/portfolio.html",
+      "permanent": true
+    },
+    {
+      "source": "/creation-site-mentions.php",
+      "destination": "/legal-notice.html",
+      "permanent": true
+    },
+    {
+      "source": "/engineering.html",
+      "destination": "/services.html",
+      "permanent": true
+    },
+    {
+      "source": "/inspect.html",
+      "destination": "/inspect/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/film-preview.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}
