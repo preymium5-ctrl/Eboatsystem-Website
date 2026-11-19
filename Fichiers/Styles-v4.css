@@ -1102,3 +1102,4 @@ html.esmiInspectOpen, html.esmiInspectOpen body {overflow: hidden}
 .esmiFounders li strong {display: block; color: #03424c; font-family: 'BO2', sans-serif; text-transform: uppercase; font-weight: 400; font-size: 2em; line-height: 1.2em; margin-top: 1.1em}
 .esmiFounders li span {display: block; color: #08aeac; font-size: 1em; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; margin-top: .5em}
 @media screen and (max-width: 900px) {.esmiFounders {width: 88%; margin-top: 8em} .esmiFounders h2 {font-size: 2.2em} .esmiFounders ul {flex-direction: column; align-items: center; gap: 4em} .esmiFounders li {width: 80%}}
+.esmiFounders li p {color: #2b4a50; font-size: 1.1em; line-height: 1.6em; margin: .6em 0 0}
