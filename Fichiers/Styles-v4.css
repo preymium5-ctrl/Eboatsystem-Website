@@ -1119,3 +1119,6 @@ html.esmiInspectOpen, html.esmiInspectOpen body {overflow: hidden}
 /* ESMI team: engineer section below the founders on the About page */
 .esmiTeam {margin-top: 8em}
 @media screen and (max-width: 900px) {.esmiTeam {margin-top: 6em}}
+
+/* Heading kept for search engines and screen readers, not shown */
+.esmiVisuallyHidden {position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0}
