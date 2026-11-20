@@ -237,13 +237,13 @@ sup {font-size: 0.55em; line-height: 1em}
 
 #presentation {width: 100%; position: relative}
 	#presentation .fond {background-color: #03424c; position: absolute; height: 100%; width: 100%; z-index: 8; top: 0; left: 0}
-	#presentation h2 {color:#fff; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; font-size:4.3em; line-height: 1.2em; position: relative; z-index: 10; text-align: center; padding-top: 4em; padding-bottom:4em; }
+	#presentation h2, #presentation h1 {color:#fff; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; font-size:4.3em; line-height: 1.2em; position: relative; z-index: 10; text-align: center; padding-top: 4em; padding-bottom:4em; }
 	#presentation .img84 {width: 83%; max-width: 2200px;  margin-left: auto; margin-right: auto; display: block; position: relative; z-index: 10}
 
 #presentation2 , #presentation2b {width: 75%; max-width: 1430px; margin-left: auto; margin-right: auto; position: relative}
 	.pres2G {width: 45%; float: left; padding-top: 5em;}
 	.pres2D {width: 50%; float: right; position: relative; z-index: 20; padding-top: 5em;}
-	#presentation2 h1 , #presentation2b h1 {color:#03424c; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height: 1.3em; font-size: 3.1em; padding-top:1em}
+	#presentation2 h1 , #presentation2b h1, #presentation2 h2, #presentation2b h2 {color:#03424c; font-family: 'BO2', sans-serif; text-transform: uppercase;  font-weight: 400; line-height: 1.3em; font-size: 3.1em; padding-top:1em}
 	#presentation2 p , #presentation2b p {color: #2b4a50; font-weight: 400; font-size: 1.3em; line-height: 1.7em; padding-top: 1.8em; margin: 0}
 	#presentation2 p strong , #presentation2b p strong {font-weight: 600}
 	#presentation2 .plus , #presentation2b .plus {margin-top:2.5em}
@@ -610,7 +610,7 @@ body {font-size: 0.8em}
 #remonte {width:37px; height:37px}
 	#remonte img {width:16px; margin-left:-8px; margin-top:-8px}	
 
-#presentation h2 {padding-top:4.5em; padding-bottom:4.5em; }
+#presentation h2, #presentation h1 {padding-top:4.5em; padding-bottom:4.5em; }
 #presentation2 , #presentation2b {width: 75%; max-width: 1150px}
 #presentation3 h2 {padding-top:4.5em; padding-bottom: 2em; }
 #presentation4 {width: 75%;max-width: 1150px}
@@ -641,10 +641,10 @@ body {font-size: 0.72em}
 #logoacc {width: 180px; margin-top:-64px; margin-left: -90px}
 	
 	
-#presentation h2 {font-size:4em}
+#presentation h2, #presentation h1 {font-size:4em}
 	#presentation .img84 {width: 88%}
 #presentation2 , #presentation2b {width: 80%}
-	#presentation2 h1 , #presentation2b h1 {font-size: 3em}
+	#presentation2 h1 , #presentation2b h1, #presentation2 h2, #presentation2b h2 {font-size: 3em}
 #presentation3 h2 {font-size:4em}
 	#presentation3 .img84 {width: 88%}
 #presentation4 {width: 80%;}
@@ -687,8 +687,8 @@ body {font-size: 0.72em}
 @media screen and (max-width:1140px) {
 
 	
-#presentation h2 {font-size:3.7em}
-	#presentation2 h1 , #presentation2b h1 {font-size: 2.6em}
+#presentation h2, #presentation h1 {font-size:3.7em}
+	#presentation2 h1 , #presentation2b h1, #presentation2 h2, #presentation2b h2 {font-size: 2.6em}
 #presentation3 h2 {font-size:3.7em}
 	#presentation4 h2 {font-size: 2.6em}
 #fondHprojets {height:26em}
@@ -749,13 +749,13 @@ body {font-size: 0.72em}
 	.navigationInt #n4 {padding-left: 13em}
 	.navigationInt #n5 {padding-left: 33.6em}
 	
-#presentation h2 {font-size:3.7em; width: 90%; margin-left: auto; margin-right: auto}
-	#presentation h2 br {display: none}
+#presentation h2, #presentation h1 {font-size:3.7em; width: 90%; margin-left: auto; margin-right: auto}
+	#presentation h2 br, #presentation h1 br {display: none}
 	#presentation .img84 {width: 90%}
 #presentation2 , #presentation2b {width: 90%;}
 	.pres2G {width: 40%; padding-top: 5em;}
 	.pres2D {width: 55%; padding-top: 5em;}
-	#presentation2 h1 , #presentation2b h1 {font-size: 2.4em}
+	#presentation2 h1 , #presentation2b h1, #presentation2 h2, #presentation2b h2 {font-size: 2.4em}
 	#presentation2 .fondjaune , #presentation2b .fondjaune {left:20%; width:30%}
 #presentation3 h2 {font-size:3.7em; width: 90%; margin-left: auto; margin-right: auto}
 	#presentation3 .img84 {width: 90%}
@@ -884,10 +884,10 @@ body {font-size: 0.72em}
 .navigationInt #n4 {padding-left:0em}
 .navigationInt #n5 {padding-left:0em}
 	
-#presentation h2 {font-size:2.8em; padding-top: 4em; padding-bottom: 3em;}
+#presentation h2, #presentation h1 {font-size:2.8em; padding-top: 4em; padding-bottom: 3em;}
 	.pres2G {width: 80%; float: none; padding-top: 5em;}
 	.pres2D {width: 100%; float: none; padding-top: 2.5em;}
-	#presentation2 h1 , #presentation2b h1 {font-size: 2.2em}
+	#presentation2 h1 , #presentation2b h1, #presentation2 h2, #presentation2b h2 {font-size: 2.2em}
 	#presentation2 .fondjaune , #presentation2b .fondjaune {left:70%; width:30%}
 #presentation3 h2 {font-size:2.8em}
 #presentation4 {margin-top: 10em; margin-bottom: 10em;}
@@ -1103,6 +1103,19 @@ html.esmiInspectOpen, html.esmiInspectOpen body {overflow: hidden}
 .esmiFounders li span {display: block; color: #08aeac; font-size: 1em; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; margin-top: .5em}
 @media screen and (max-width: 900px) {.esmiFounders {width: 88%; margin-top: 8em} .esmiFounders h2 {font-size: 2.2em} .esmiFounders ul {flex-direction: column; align-items: center; gap: 4em} .esmiFounders li {width: 80%}}
 .esmiFounders li p {color: #2b4a50; font-size: 1.1em; line-height: 1.6em; margin: .6em 0 0}
+/* ESMI home: projects subtitle and target markets section */
+.esmiProjetsSub {color: #2b4a50; font-size: 1.25em; line-height: 1.6em; text-align: center; max-width: 36em; margin: 0 auto 3em}
+.esmiMarkets {width: 75%; max-width: 1150px; margin: 10em auto 4em; text-align: center}
+.esmiMarkets h2 {color: #03424c; font-family: 'BO2', sans-serif; text-transform: uppercase; font-weight: 400; font-size: 3.1em; line-height: 1.3em}
+.esmiMarkets > p {color: #2b4a50; font-size: 1.3em; line-height: 1.7em; max-width: 42em; margin: 1.2em auto 0}
+.esmiMarkets > p strong {font-weight: 600}
+.esmiMarkets ol {list-style: none; margin: 3.5em 0 2.5em; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 3em 6%; text-align: left}
+.esmiMarkets li span {display: block; color: #08aeac; font-size: 1em; font-weight: 600; letter-spacing: .14em; text-transform: uppercase}
+.esmiMarkets li strong {display: block; color: #03424c; font-family: 'BO2', sans-serif; text-transform: uppercase; font-weight: 400; font-size: 1.7em; line-height: 1.25em; margin-top: .35em}
+.esmiMarkets li p {color: #2b4a50; font-size: 1.1em; line-height: 1.65em; margin: .7em 0 0}
+.esmiMarkets li p b {font-weight: 600; color: #03424c}
+.esmiMarkets .esmiMarketsTag {color: #03424c; font-family: 'BO2', sans-serif; text-transform: uppercase; font-size: 1.6em; line-height: 1.4em; margin-top: 1.6em}
+@media screen and (max-width: 900px) {.esmiMarkets {width: 88%; margin-top: 7em} .esmiMarkets h2 {font-size: 2.2em} .esmiMarkets ol {grid-template-columns: 1fr; gap: 2.5em}}
 /* ESMI team: engineer section below the founders on the About page */
 .esmiTeam {margin-top: 8em}
 @media screen and (max-width: 900px) {.esmiTeam {margin-top: 6em}}
