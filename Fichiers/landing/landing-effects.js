@@ -1,5 +1,5 @@
-const RIPPLE_COUNT = 4;
-const RIPPLE_LIFETIME = 2.25;
+const RIPPLE_COUNT = 10;
+const RIPPLE_LIFETIME = 2.8;
 const INTERACTIVE = 'button, a[href]';
 
 const VERTEX_SHADER = `
@@ -78,22 +78,23 @@ const FRAGMENT_SHADER = `
     for (int i = 0; i < ${RIPPLE_COUNT}; i++) {
       vec4 ripple = uRipples[i];
       float age = uTime - ripple.z;
-      if (age >= 0.0 && age < 2.25 && ripple.w > 0.0) {
+      if (age >= 0.0 && age < ${RIPPLE_LIFETIME.toFixed(2)} && ripple.w > 0.0) {
         vec2 delta = point - vec2(ripple.x * uAspect, ripple.y);
         float distance = length(delta);
-        float radius = age * 0.21;
-        float width = 0.034 + age * 0.014;
+        // Wider, slower-fading rings with clearly visible refraction and a bright glint on each crest.
+        float radius = age * 0.24;
+        float width = 0.042 + age * 0.017;
         float band = exp(-pow((distance - radius) / width, 2.0));
-        float fade = exp(-age * 1.8) * (1.0 - smoothstep(1.6, 2.25, age));
-        float wave = sin((distance - radius) * 105.0) * band * fade * ripple.w;
-        displacement += delta / max(distance, 0.001) * wave * 0.0034 * water;
-        light += wave * 0.0035 * water;
+        float fade = exp(-age * 1.3) * (1.0 - smoothstep(${(RIPPLE_LIFETIME - 0.75).toFixed(2)}, ${RIPPLE_LIFETIME.toFixed(2)}, age));
+        float wave = sin((distance - radius) * 88.0) * band * fade * ripple.w;
+        displacement += delta / max(distance, 0.001) * wave * 0.0125 * water;
+        light += wave * 0.05 * water;
         coverage += band * fade * ripple.w;
       }
     }
     float edge = min(min(projected.x, 1.0 - projected.x), min(projected.y, 1.0 - projected.y));
     vec2 shift = vec2(displacement.x / uAspect, displacement.y) * smoothstep(0.0, 0.05, edge);
-    float opacity = clamp(coverage * 1.8, 0.0, 1.0) * water;
+    float opacity = clamp(coverage * 2.6, 0.0, 1.0) * water;
     if (opacity < 0.002) {
       gl_FragColor = vec4(0.0);
       return;
@@ -172,7 +173,8 @@ export function setupLandingEffects({landing, video, menu, reducedMotion}) {
 
   function enabled() {
     // A narrow desktop pane still has a mouse. Width only chooses composition.
-    return !destroyed && !motionPreference.matches && !touchInput && (mouseSeen || finePointer.matches);
+    // Touch screens get the water ripples too (but not the cursor or camera tilt).
+    return !destroyed && !motionPreference.matches && (touchInput || mouseSeen || finePointer.matches);
   }
 
   function onScreen() {
@@ -624,7 +626,7 @@ export function setupLandingEffects({landing, video, menu, reducedMotion}) {
   function spawnRipple(event, strength = 1) {
     const now = performance.now();
     const distance = Math.hypot(event.clientX - lastRippleX, event.clientY - lastRippleY);
-    if (strength <= 1 && (now - lastRippleAt < 110 || distance < 48)) return;
+    if (strength <= 1 && (now - lastRippleAt < 70 || distance < 30)) return;
     const rect = media.getBoundingClientRect();
     const ripple = ripples[rippleIndex];
     const screenX = ((event.clientX-rect.left)/rect.width-0.5)*2*viewportWidth/viewportHeight;
@@ -648,9 +650,7 @@ export function setupLandingEffects({landing, video, menu, reducedMotion}) {
   function movePointer(event) {
     // Actual input wins over hover media queries, including embedded browsers.
     if (event.pointerType === 'touch') {
-      touchInput = true;
-      mouseSeen = false;
-      refresh();
+      useTouch();
       return;
     }
     if (event.pointerType !== 'mouse') return;
@@ -719,7 +719,8 @@ export function setupLandingEffects({landing, video, menu, reducedMotion}) {
 
   function refresh() {
     if (destroyed) return;
-    landing.dataset.pointerReady = String(enabled());
+    // Cursor ring and camera tilt are for mice only; touch keeps the untransformed view.
+    landing.dataset.pointerReady = String(enabled() && !touchInput);
     if (!onScreen()) {
       cancelAnimationFrame(animationFrame);
       animationFrame = 0;
@@ -764,9 +765,7 @@ export function setupLandingEffects({landing, video, menu, reducedMotion}) {
   listen(landing, 'pointerleave', () => { hidePointer(); previousEvent = null; wake(); });
   listen(landing, 'pointerdown', event => {
     if (event.pointerType === 'touch') {
-      touchInput = true;
-      mouseSeen = false;
-      refresh();
+      useTouch();
       return;
     }
     if (event.pointerType === 'mouse' && !enabled()) movePointer(event);
@@ -775,6 +774,40 @@ export function setupLandingEffects({landing, video, menu, reducedMotion}) {
     spawnRipple(event, 1.1);
     wake();
   }, {passive:true});
+  // Touch: a tap drops a ring, a swipe leaves a trail. Listen on the window because the
+  // hero logo sits above the landing; keep only touches that land on the hero.
+  let previousTouch = null;
+  function touchOnLanding(touch) {
+    const rect = landing.getBoundingClientRect();
+    return touch && touch.clientX >= rect.left && touch.clientX <= rect.right && touch.clientY >= rect.top && touch.clientY <= rect.bottom;
+  }
+  function useTouch() {
+    if (touchInput && !mouseSeen) return;
+    touchInput = true;
+    mouseSeen = false;
+    hidePointer();
+    refresh();
+  }
+  listen(window, 'touchstart', event => {
+    const touch = event.changedTouches[0];
+    if (!touchOnLanding(touch)) return;
+    useTouch();
+    if (!interactionAllowed()) return;
+    spawnRipple(touch, 1.1);
+    previousTouch = {x:touch.clientX, y:touch.clientY, time:performance.now()};
+    wake();
+  }, {passive:true});
+  listen(window, 'touchmove', event => {
+    const touch = event.touches[0];
+    if (!touchOnLanding(touch) || !interactionAllowed()) return;
+    const now = performance.now();
+    const distance = previousTouch ? Math.hypot(touch.clientX - previousTouch.x, touch.clientY - previousTouch.y) : 30;
+    const elapsed = previousTouch ? Math.max(8, now - previousTouch.time) : 16;
+    spawnRipple(touch, Math.max(0.7, Math.min(1, distance / elapsed * 0.6)));
+    previousTouch = {x:touch.clientX, y:touch.clientY, time:now};
+    wake();
+  }, {passive:true});
+  listen(window, 'touchend', () => { previousTouch = null; }, {passive:true});
   listen(window, 'pointerup', () => { pointer.targetScale = activeMagnet ? 1.55 : 1; wake(); }, {passive:true});
   listen(document, 'visibilitychange', refresh);
   listen(window, 'blur', () => { hidePointer(); wake(); });
